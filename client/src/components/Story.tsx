@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { LazyImage } from "@/components/ui/lazy-image";
 import storyImg from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs.png";
 
 export default function Story() {
@@ -26,11 +27,12 @@ export default function Story() {
           >
             <div className="sticky top-32">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[3/4] h-full">
-                <img 
+                <LazyImage 
                   src={storyImg} 
                   alt="Brand Journey" 
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  width={1024}
+                  height={1024}
                 />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               </div>

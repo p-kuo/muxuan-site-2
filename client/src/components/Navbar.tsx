@@ -64,7 +64,7 @@ export default function Navbar() {
           className="cursor-pointer flex items-center gap-3"
           onClick={() => scrollToSection("home")}
         >
-          <img src={logo} alt="沐璿草本" className="h-12 w-auto object-contain" />
+          <img src={logo} alt="沐璿草本" className="h-12 w-auto object-contain" width={500} height={500} />
           <span className="font-serif text-xl font-bold text-primary hidden sm:block">沐璿草本護髮中心</span>
         </div>
 

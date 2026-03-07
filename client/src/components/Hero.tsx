@@ -17,6 +17,8 @@ export default function Hero() {
           src={heroBg} 
           alt="Herbal Spa Background" 
           className="w-full h-full object-cover"
+          width={1024}
+          height={1024}
           fetchPriority="high"
           loading="eager"
           decoding="async"

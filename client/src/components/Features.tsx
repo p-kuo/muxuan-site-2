@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { LazyImage } from "@/components/ui/lazy-image";
 import { Leaf, Droplets, ShieldCheck, Sparkles } from "lucide-react";
 import ingredientsImg from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates.png";
 
@@ -96,11 +97,12 @@ export default function Features() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-square">
-              <img 
+              <LazyImage 
                 src={ingredientsImg} 
                 alt="Natural Ingredients" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                loading="lazy"
+                width={1024}
+                height={1024}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
               <div className="absolute bottom-8 left-8 right-8 text-white">

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import { LazyImage } from "@/components/ui/lazy-image";
 import hairLossImg from "@assets/generated_images/asian_woman_looking_in_mirror_concerned_about_hair_volume.png";
 import postpartumImg from "@assets/generated_images/gentle_asian_mother_holding_newborn_baby.png";
 import damagedHairImg from "@assets/generated_images/close_up_texture_of_dry_brittle_hair_ends.png";
@@ -11,32 +12,44 @@ const audiences = [
   {
     title: "有白髮困擾",
     description: "遮蓋白髮",
-    image: grayHairImg
+    image: grayHairImg,
+    width: 1280,
+    height: 896
   },
   {
     title: "對化學染敏感",
     description: "化學染後頭皮會癢、腫",
-    image: chemicalSensitiveImg
+    image: chemicalSensitiveImg,
+    width: 1280,
+    height: 896
   },
   {
     title: "敏感頭皮",
     description: "有頭皮屑、油脂旺盛、敏感、紅癢者",
-    image: sensitiveScalpImg
+    image: sensitiveScalpImg,
+    width: 1024,
+    height: 1024
   },
   {
     title: "落髮困擾",
     description: "面臨落髮、髮量變薄的男性與女性",
-    image: hairLossImg
+    image: hairLossImg,
+    width: 1024,
+    height: 1024
   },
   {
     title: "產後修復",
     description: "產後落髮的女性，需要溫和調理",
-    image: postpartumImg
+    image: postpartumImg,
+    width: 1024,
+    height: 1024
   },
   {
     title: "受損髮質",
     description: "因染燙受損、乾燥、脆弱髮質者",
-    image: damagedHairImg
+    image: damagedHairImg,
+    width: 1024,
+    height: 1024
   }
 ];
 
@@ -66,11 +79,12 @@ export default function Audience() {
                 <div className="flex h-full">
                   {/* Image Section */}
                   <div className="w-1/3 relative overflow-hidden">
-                    <img 
+                    <LazyImage 
                       src={item.image} 
                       alt={item.title} 
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      loading="lazy"
+                      width={item.width}
+                      height={item.height}
                     />
                   </div>
                   
