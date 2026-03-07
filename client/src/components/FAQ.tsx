@@ -38,7 +38,7 @@ export default function FAQ() {
       <div className="container px-4 md:px-6 max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-            常見問與答
+            常見問與答 (FAQs)
           </h2>
           <p className="text-muted-foreground text-lg">
             為您解答關於草本護髮的疑問
