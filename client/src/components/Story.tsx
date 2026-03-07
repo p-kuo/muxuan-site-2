@@ -30,6 +30,7 @@ export default function Story() {
                   src={storyImg} 
                   alt="Brand Journey" 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               </div>
