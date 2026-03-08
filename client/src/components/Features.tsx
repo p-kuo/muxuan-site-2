@@ -1,9 +1,22 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LazyImage } from "@/components/ui/lazy-image";
+import { PictureImage } from "@/components/ui/picture-image";
 import { Leaf, Droplets, ShieldCheck, Sparkles } from "lucide-react";
-import ingredientsImg from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates.png";
+
+import ingredientsImgPng from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates.png";
+import ingredients320w from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-320w.webp";
+import ingredients640w from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-640w.webp";
+import ingredients1024w from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-1024w.webp";
+import ingredients320wAvif from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-320w.avif";
+import ingredients640wAvif from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-640w.avif";
+import ingredients1024wAvif from "@assets/generated_images/traditional_chinese_herbs_(ginseng,_angelica,_etc)_arranged_on_separate_small_plates-1024w.avif";
+
+const ingredientsSrcSet = [
+  { width: 320, webpSrc: ingredients320w, avifSrc: ingredients320wAvif },
+  { width: 640, webpSrc: ingredients640w, avifSrc: ingredients640wAvif },
+  { width: 1024, webpSrc: ingredients1024w, avifSrc: ingredients1024wAvif },
+];
 
 const features = [
   {
@@ -97,12 +110,17 @@ export default function Features() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-square">
-              <LazyImage 
-                src={ingredientsImg} 
-                alt="Natural Ingredients" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              <PictureImage
+                src={ingredientsImgPng}
+                alt="沐璿草本護髮 — 人參、當歸等傳統中藥草本食材，天然護髮配方原料"
                 width={1024}
                 height={1024}
+                srcSetEntries={ingredientsSrcSet}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={false}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                containerClassName="absolute inset-0 w-full h-full"
+                style={{ aspectRatio: "unset" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
               <div className="absolute bottom-8 left-8 right-8 text-white">

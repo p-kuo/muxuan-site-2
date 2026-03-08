@@ -1,6 +1,19 @@
 import { motion } from "framer-motion";
-import { LazyImage } from "@/components/ui/lazy-image";
-import storyImg from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs.png";
+import { PictureImage } from "@/components/ui/picture-image";
+
+import storyImgPng from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs.png";
+import story320w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-320w.webp";
+import story640w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-640w.webp";
+import story1024w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-1024w.webp";
+import story320wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-320w.avif";
+import story640wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-640w.avif";
+import story1024wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-1024w.avif";
+
+const storySrcSet = [
+  { width: 320, webpSrc: story320w, avifSrc: story320wAvif },
+  { width: 640, webpSrc: story640w, avifSrc: story640wAvif },
+  { width: 1024, webpSrc: story1024w, avifSrc: story1024wAvif },
+];
 
 export default function Story() {
   return (
@@ -27,12 +40,17 @@ export default function Story() {
           >
             <div className="sticky top-32">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[3/4] h-full">
-                <LazyImage 
-                  src={storyImg} 
-                  alt="Brand Journey" 
-                  className="w-full h-full object-cover"
+                <PictureImage
+                  src={storyImgPng}
+                  alt="沐璿草本護髮品牌故事 — 草本植物從傳統藥材中生長，象徵品牌追求天然護髮之旅"
                   width={1024}
                   height={1024}
+                  srcSetEntries={storySrcSet}
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  priority={false}
+                  className="w-full h-full object-cover"
+                  containerClassName="absolute inset-0 w-full h-full"
+                  style={{ aspectRatio: "unset" }}
                 />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               </div>

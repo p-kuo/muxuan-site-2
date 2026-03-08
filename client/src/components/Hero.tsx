@@ -1,7 +1,21 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { PictureImage } from "@/components/ui/picture-image";
 import { ArrowRight, Leaf } from "lucide-react";
-import heroBg from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
+
+const heroSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -13,15 +27,17 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-background z-10" />
-        <img 
-          src={heroBg} 
-          alt="Herbal Spa Background" 
-          className="w-full h-full object-cover"
+        <PictureImage
+          src={heroBgPng}
+          alt="沐璿草本護髮中心 — 天然草本護髮背景，充滿生命力的綠葉"
           width={1024}
           height={1024}
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
+          srcSetEntries={heroSrcSet}
+          sizes="100vw"
+          priority={true}
+          className="w-full h-full object-cover"
+          containerClassName="absolute inset-0 w-full h-full"
+          style={{ aspectRatio: "unset" }}
         />
       </div>
 

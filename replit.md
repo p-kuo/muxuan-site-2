@@ -50,11 +50,16 @@ tsconfig.json           # TypeScript config
 - Compatible with Vercel, Netlify, or any static host
 
 ## Performance Optimizations
-- Hero image uses `fetchPriority="high"` for fast LCP
-- Below-fold images use Intersection Observer lazy loading (LazyImage component)
-- Audience images converted to WebP (98% size reduction)
+- **PictureImage component** (`client/src/components/ui/picture-image.tsx`): Serves AVIF → WebP → PNG fallback with responsive srcset. Supports `priority` prop for LCP (fetchPriority=high, loading=eager) vs. lazy (IntersectionObserver). Built-in aspect-ratio CLS prevention.
+- **LazyImage component** (`client/src/components/ui/lazy-image.tsx`): IntersectionObserver lazy loading for simpler below-fold images.
+- **Next-gen image formats**: All 3 major PNG images converted to AVIF + WebP at 320w/640w/1024w via `scripts/convert-images.mjs` (requires `sharp` dev dependency). Audience images are already WebP at 512px. Total size reductions:
+  - Hero (1.3 MB PNG) → 48 KB AVIF at 1024w = 96% reduction
+  - Features herbs (1.7 MB PNG) → 113 KB AVIF at 1024w = 93% reduction
+  - Story (1.3 MB PNG) → 46 KB AVIF at 1024w = 96% reduction
+- **Responsive srcset**: Browser picks smallest sufficient image for viewport (320w/640w/1024w)
 - Font loading is non-blocking via media="print" swap pattern
 - Vite code splitting: vendor (React) and UI (Framer Motion) chunks
+- `.img-container` utility class in `index.css` for CLS-safe image wrappers
 
 ## SEO / GEO
 - JSON-LD structured data (HealthAndBeautyBusiness schema)

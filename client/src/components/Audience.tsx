@@ -84,7 +84,10 @@ export default function Audience() {
               <article>
                 <Card className="h-full border-none shadow-sm hover:shadow-md transition-all duration-300 bg-white overflow-hidden group">
                   <div className="flex h-full">
-                    <div className="w-1/3 relative overflow-hidden">
+                    <div
+                      className="w-1/3 relative overflow-hidden"
+                      style={{ aspectRatio: `${item.width} / ${item.height}` }}
+                    >
                       <LazyImage 
                         src={item.image} 
                         alt={item.alt} 
