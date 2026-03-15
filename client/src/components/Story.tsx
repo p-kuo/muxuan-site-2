@@ -21,7 +21,7 @@ export default function Story() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6 relative inline-block">
-            品牌故事
+            關於沐璿
             <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary rounded-full left-1/2 -translate-x-1/2"></span>
           </h2>
           <h3 className="text-xl text-primary font-medium">
