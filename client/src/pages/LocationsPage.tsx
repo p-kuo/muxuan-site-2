@@ -249,14 +249,15 @@ export default function LocationsPage() {
             <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
               致電或到店諮詢，讓我們的專業護理師為您量身設計草本護髮方案。
             </p>
-            <Link href="/#contact">
-              <Button
-                size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
-              >
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+            >
+              <a href="https://lin.ee/NxoDqq0" target="_blank" rel="noopener noreferrer">
                 立即預約
-              </Button>
-            </Link>
+              </a>
+            </Button>
           </motion.div>
         </div>
       </section>
