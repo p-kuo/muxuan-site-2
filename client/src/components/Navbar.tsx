@@ -23,7 +23,7 @@ import logo from "@assets/Untitled_design__15_-removebg-preview_1764006141705.pn
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
 
   const isSubPage = location !== "/";
 
@@ -72,7 +72,14 @@ export default function Navbar() {
           href="/"
           title="沐璿草本護髮中心 — 回到首頁"
           className="flex items-center gap-3"
-          onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}
+          onClick={(e) => {
+            e.preventDefault();
+            if (isSubPage) {
+              navigate("/");
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
         >
           <img
             src={logo}
