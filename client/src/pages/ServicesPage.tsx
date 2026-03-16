@@ -118,6 +118,15 @@ const conditions = [
     icon: <Flame className="w-6 h-6 text-primary" />,
     tags: ["染燙修護", "溫和配方", "敏感養護"],
   },
+  {
+    id: "postpartum",
+    title: "產後落髮・荷爾蒙變化",
+    description:
+      "產後媽媽因荷爾蒙急劇變化，常出現大量落髮、髮量明顯減少的困擾。沐璿草本以溫和天然的草本配方，搭配輕柔頭皮按摩手技，為產後媽媽提供安心舒適的頭皮養護體驗，幫助頭皮在自然的節奏中慢慢恢復。",
+    icon: <Leaf className="w-6 h-6 text-primary" />,
+    tags: ["產後護理", "溫和養護", "天然草本"],
+    disclaimer: "產後落髮屬正常生理現象，若持續超過六個月建議諮詢專科醫師。",
+  },
 ];
 
 const steps = [

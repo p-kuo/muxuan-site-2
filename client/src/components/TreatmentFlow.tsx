@@ -6,7 +6,7 @@ const treatmentSteps = [
   {
     number: "第一道",
     icon: <FlaskConical className="w-8 h-8 text-primary" />,
-    title: "草本精華液頭皮按摩",
+    title: "薑酒精華液按摩",
     description:
       "以薑、酒、中藥所提煉的精華液按摩頭皮，讓草本成分與頭皮充分接觸，同時舒緩頭部與肩頸的緊繃感。",
   },
