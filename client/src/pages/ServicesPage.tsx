@@ -16,6 +16,12 @@ import {
   BookOpen,
   CalendarCheck,
   ChevronRight,
+  Snowflake,
+  ShieldAlert,
+  TrendingDown,
+  Palette,
+  Brain,
+  Flame,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
@@ -50,6 +56,67 @@ const features = [
       "專為落髮、稀疏髮質設計。富含人參、何首烏等滋養成分，深入毛囊提供營養，強健髮根，促進健康生長循環。",
     icon: <Leaf className="w-6 h-6 text-primary" />,
     tags: ["固髮", "滋養", "活化"],
+  },
+];
+
+const conditions = [
+  {
+    id: "oily-scalp",
+    title: "油性頭皮・頭皮出油",
+    description:
+      "洗完頭不到半天就開始出油？髮根扁塌沒有蓬鬆感？台灣氣候潮濕悶熱，加上壓力大、作息不規律，讓油性頭皮問題更加嚴重。沐璿草本採用薑、中藥精華液按摩頭皮，搭配草本泥敷護，給頭皮溫和深層的清潔養護體驗，幫助頭皮在自然環境下找回舒適感。",
+    icon: <Droplets className="w-6 h-6 text-primary" />,
+    tags: ["控油", "深層清潔", "頭皮養護"],
+  },
+  {
+    id: "dandruff",
+    title: "頭皮屑困擾・換季頭皮乾癢",
+    description:
+      "肩上雪花片片，開會見客戶都尷尬？頭皮屑是台灣最常見的頭皮煩惱之一，秋冬換季時更容易惡化。無論是油性頭皮屑（黃膩大塊）還是乾性頭皮屑（白色細粉），都讓人困擾不已。沐璿草本以嚴選天然中藥材當歸、人蔘、何首烏調製草本配方，搭配蒸氣草本泥養護，給頭皮溫和的深層清潔體驗。",
+    icon: <Snowflake className="w-6 h-6 text-primary" />,
+    tags: ["去屑", "換季保養", "草本養護"],
+    disclaimer: "若頭皮屑問題持續嚴重，建議同時諮詢皮膚科醫師。",
+  },
+  {
+    id: "itchy-scalp",
+    title: "頭皮癢・頭皮敏感",
+    description:
+      "頭皮總是癢癢的，忍不住想抓？頭皮癢是許多台灣人日常的隱形壓力。沐璿草本以天然植萃草本精華輕柔按摩頭皮，搭配草本泥舒緩敷護，讓頭皮在溫和的草本環境中得到放鬆與養護。",
+    icon: <ShieldAlert className="w-6 h-6 text-primary" />,
+    tags: ["舒緩", "敏感肌", "溫和養護"],
+  },
+  {
+    id: "hair-loss",
+    title: "掉髮困擾・髮量稀疏",
+    description:
+      "梳頭時看到一把頭髮，洗頭時排水孔堵滿——台灣每兩人就有一人有掉髮困擾。壓力、熬夜、作息不規律，都是現代人掉髮的常見生活因素。沐璿草本以草本配方提供頭皮日常草本養護體驗，幫助頭皮維持在舒適健康的狀態。",
+    icon: <TrendingDown className="w-6 h-6 text-primary" />,
+    tags: ["強健髮根", "頭皮養護", "草本滋養"],
+    disclaimer: "個別養護效果因人而異，嚴重掉髮問題建議諮詢皮膚科或毛髮專科醫師。",
+  },
+  {
+    id: "white-hair",
+    title: "白髮困擾・白髮增多",
+    description:
+      "白頭髮越長越多，染了又傷頭皮？白髮增多是許多人隨年齡增長的困擾，也有不少年輕人因壓力與作息問題提早出現白髮。沐璿草本的草本白髮養護療程，以何首烏等傳統中藥草本成分為核心，給頭皮提供溫和的草本養護體驗。",
+    icon: <Palette className="w-6 h-6 text-primary" />,
+    tags: ["白髮養護", "何首烏", "草本調理"],
+  },
+  {
+    id: "stress",
+    title: "壓力大・睡不好・肩頸緊繃",
+    description:
+      "現代人長時間盯著電腦、手機，肩頸僵硬、頭部沉重、腦袋轉不動。沐璿草本頭療結合草本精華液按摩與肩頸舒緩手技，讓您在享受草本頭皮養護的同時，感受頭部與肩頸的深層放鬆，是忙碌現代人最需要的舒壓體驗。",
+    icon: <Brain className="w-6 h-6 text-primary" />,
+    tags: ["舒壓", "肩頸放鬆", "頭療"],
+  },
+  {
+    id: "dye-damage",
+    title: "染燙後頭皮受損・頭皮敏感",
+    description:
+      "染髮、燙髮後頭皮變得特別敏感脆弱？化學成分殘留讓頭皮出現不適感？沐璿草本採用天然植萃草本配方，溫和不刺激，給染燙後的頭皮一次溫柔的草本修護養護體驗。",
+    icon: <Flame className="w-6 h-6 text-primary" />,
+    tags: ["染燙修護", "溫和配方", "敏感養護"],
   },
 ];
 
@@ -227,6 +294,73 @@ export default function ServicesPage() {
               </div>
               <div className="absolute -inset-4 border-2 border-primary/20 rounded-[2rem] -z-10 translate-x-4 translate-y-4" />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 頭皮困擾對照 */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
+              頭皮困擾對照
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+              你也有這些頭皮困擾嗎？
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              台灣近八成民眾有油性頭皮的困擾，近四成人即使天天洗頭，依然感覺頭皮油膩、有異味、髮根扁塌。沐璿草本護髮中心，以天然中藥草本的力量，給您的頭皮一次溫和而專業的養護體驗。
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {conditions.map((condition, index) => (
+              <motion.div
+                key={condition.id}
+                id={condition.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+              >
+                <Card className="border border-border/50 shadow-sm hover:shadow-lg transition-shadow duration-300 h-full bg-background group">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        {condition.icon}
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                        {condition.title}
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed text-sm flex-1">
+                      {condition.description}
+                    </p>
+                    {condition.disclaimer && (
+                      <p className="text-xs text-muted-foreground/70 mt-3 pt-3 border-t border-border/30 italic">
+                        {condition.disclaimer}
+                      </p>
+                    )}
+                    <div className="flex gap-2 flex-wrap mt-4">
+                      {condition.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs font-medium px-2 py-1 bg-muted text-muted-foreground rounded-md"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
