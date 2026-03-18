@@ -142,7 +142,6 @@ export default function ContactPage() {
               {locations.map((loc, index) => (
                 <motion.address
                   key={loc.name}
-                  not-italic
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

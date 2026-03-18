@@ -1,19 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
 const scrollNavItems: { name: string; id: string; title: string }[] = [];
 
+// Items that are plain page links
 const pageNavItems = [
   { name: "服務介紹", href: "/services",  title: "查看沐璿草本護髮服務介紹" },
   { name: "關於沐璿", href: "/about",     title: "關於沐璿草本護髮中心的品牌故事" },
   { name: "成功案例", href: "/cases",     title: "查看沐璿草本護髮成功調理案例" },
-  { name: "常見問題", href: "/faq",       title: "草本護髮常見問與答" },
   { name: "聯絡我們", href: "/contact",   title: "聯絡沐璿草本護髮中心" },
   { name: "門市資訊", href: "/locations", title: "查看沐璿草本護髮全台及海外門市資訊" },
+];
+
+// Sub-items for the 常見問題 dropdown
+const knowledgeDropdownItems = [
+  { name: "常見問題", href: "/faq",  title: "草本護髮常見問與答" },
+  { name: "護髮部落格", href: "/blog", title: "沐璿草本護髮部落格" },
 ];
 
 import logo from "@assets/Untitled_design__15_-removebg-preview_1764006141705.png";
@@ -21,9 +33,12 @@ import logo from "@assets/Untitled_design__15_-removebg-preview_1764006141705.pn
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileKnowledgeOpen, setMobileKnowledgeOpen] = useState(false);
   const [location, navigate] = useLocation();
 
   const isSubPage = location !== "/";
+  const isKnowledgeActive =
+    location === "/faq" || location === "/blog" || location.startsWith("/blog/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +110,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-1 lg:gap-2">
           <ul role="list" className="flex items-center gap-1 lg:gap-2 list-none m-0 p-0">
 
-            {/* Scroll-to-section items */}
+            {/* Scroll-to-section items (empty, kept for future use) */}
             {scrollNavItems.map((item) => (
               <li key={item.id}>
                 <button
@@ -114,7 +129,7 @@ export default function Navbar() {
               </li>
             ))}
 
-            {/* Page-link items with hover underline */}
+            {/* Page-link items */}
             {pageNavItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -135,6 +150,62 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+
+            {/* 常見問題 split-style dropdown */}
+            <li className="flex items-center">
+              {/* Left: text link navigates directly to /faq */}
+              <Link
+                href="/faq"
+                title="草本護髮常見問與答"
+                aria-label="草本護髮常見問與答"
+                aria-current={location === "/faq" ? "page" : undefined}
+                className={cn(
+                  "pl-3 pr-1 py-2 text-sm font-medium rounded-l-md transition-colors relative inline-block",
+                  "after:absolute after:bottom-1 after:left-3 after:right-1 after:h-[2px] after:bg-primary",
+                  "after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left",
+                  isKnowledgeActive
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                )}
+              >
+                常見問題
+              </Link>
+
+              {/* Right: chevron button opens dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    aria-label="展開知識選單"
+                    className={cn(
+                      "pr-2 pl-0.5 py-2 text-sm font-medium rounded-r-md transition-colors",
+                      isKnowledgeActive
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                    )}
+                  >
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-44 mt-1">
+                  {knowledgeDropdownItems.map((sub) => (
+                    <DropdownMenuItem key={sub.href} asChild>
+                      <Link
+                        href={sub.href}
+                        title={sub.title}
+                        className={cn(
+                          "w-full cursor-pointer",
+                          (location === sub.href || (sub.href === "/blog" && location.startsWith("/blog/")))
+                            ? "text-primary font-semibold"
+                            : ""
+                        )}
+                      >
+                        {sub.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </li>
 
             <li>
               <Button
@@ -189,6 +260,58 @@ export default function Navbar() {
                       </Link>
                     </li>
                   ))}
+
+                  {/* Mobile knowledge section with inline expansion */}
+                  <li>
+                    <button
+                      onClick={() => setMobileKnowledgeOpen((o) => !o)}
+                      className={cn(
+                        "w-full flex items-center justify-between text-lg font-medium py-2 border-b border-border/50 transition-colors",
+                        isKnowledgeActive ? "text-primary" : "hover:text-primary"
+                      )}
+                      aria-expanded={mobileKnowledgeOpen}
+                      aria-label="展開或收合知識選單"
+                    >
+                      <Link
+                        href="/faq"
+                        title="草本護髮常見問與答"
+                        onClick={(e) => e.stopPropagation()}
+                        className={cn(
+                          isKnowledgeActive ? "text-primary" : ""
+                        )}
+                      >
+                        常見問題
+                      </Link>
+                      <ChevronDown
+                        className={cn(
+                          "w-5 h-5 transition-transform duration-200",
+                          mobileKnowledgeOpen ? "rotate-180" : ""
+                        )}
+                      />
+                    </button>
+
+                    {mobileKnowledgeOpen && (
+                      <ul className="pl-4 mt-1 flex flex-col gap-1 list-none">
+                        {knowledgeDropdownItems.map((sub) => (
+                          <li key={sub.href}>
+                            <Link
+                              href={sub.href}
+                              title={sub.title}
+                              aria-current={location === sub.href ? "page" : undefined}
+                              className={cn(
+                                "block text-base font-medium py-2 border-b border-border/30 transition-colors",
+                                location === sub.href || (sub.href === "/blog" && location.startsWith("/blog/"))
+                                  ? "text-primary"
+                                  : "text-muted-foreground hover:text-primary"
+                              )}
+                            >
+                              {sub.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
 
                   <li>
                     <Button

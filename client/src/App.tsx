@@ -10,6 +10,8 @@ import CasesPage from "@/pages/CasesPage";
 import AboutPage from "@/pages/AboutPage";
 import FaqPage from "@/pages/FaqPage";
 import ContactPage from "@/pages/ContactPage";
+import BlogPage from "@/pages/BlogPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +24,8 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/faq" component={FaqPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
       <Route component={NotFound} />
     </Switch>
   );
