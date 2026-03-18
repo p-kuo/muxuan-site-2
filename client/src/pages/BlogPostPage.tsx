@@ -82,6 +82,10 @@ export default function BlogPostPage() {
       if (ogUrl) ogUrl.setAttribute("content", articleUrl);
       const ogType = document.querySelector('meta[property="og:type"]');
       if (ogType) ogType.setAttribute("content", "article");
+      // og:image — use global site image (update when a branded og image is available)
+      const globalOgImage = document.querySelector('meta[property="og:image"]')?.getAttribute("content") ?? "https://replit.com/public/images/opengraph.png";
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogImage) ogImage.setAttribute("content", globalOgImage);
 
       // Article JSON-LD
       const existing = document.getElementById("article-jsonld");
@@ -114,7 +118,7 @@ export default function BlogPostPage() {
         inLanguage: "zh-TW",
         image: {
           "@type": "ImageObject",
-          url: "https://muxuantw.com/og-image.jpg",
+          url: globalOgImage,
           description: article.coverAlt,
         },
       });
