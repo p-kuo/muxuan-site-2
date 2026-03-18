@@ -22,13 +22,43 @@ const categoryColors: Record<string, string> = {
 export default function BlogPage() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    document.title = "護髮部落格 | 沐璿草本護髮中心";
+    const blogTitle = "護髮部落格 | 沐璿草本護髮中心";
+    const blogDesc = "沐璿草本護髮中心護髮部落格：深度解析頭皮知識、草本成分與護髮教學，幫助您從根本了解頭皮健康。";
+    const blogUrl = "https://muxuantw.com/blog";
+
+    document.title = blogTitle;
+
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc)
-      metaDesc.setAttribute(
-        "content",
-        "沐璿草本護髮中心護髮部落格：深度解析頭皮知識、草本成分與護髮教學，幫助您從根本了解頭皮健康。"
-      );
+    if (metaDesc) metaDesc.setAttribute("content", blogDesc);
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", blogUrl);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", blogTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", blogDesc);
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", blogUrl);
+    const ogType = document.querySelector('meta[property="og:type"]');
+    if (ogType) ogType.setAttribute("content", "website");
+
+    return () => {
+      document.title = "沐璿草本護髮 | 天然・安全・有效";
+      const defaultDesc = "沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，專業改善白髮、落髮、頭皮屑等問題。台北、嘉義、新加坡服務。";
+      const md = document.querySelector('meta[name="description"]');
+      if (md) md.setAttribute("content", defaultDesc);
+      const cn = document.querySelector('link[rel="canonical"]');
+      if (cn) cn.setAttribute("href", "https://muxuantw.com");
+      const ot = document.querySelector('meta[property="og:title"]');
+      if (ot) ot.setAttribute("content", "沐璿草本護髮中心｜天然草本護髮・頭皮SPA");
+      const od = document.querySelector('meta[property="og:description"]');
+      if (od) od.setAttribute("content", defaultDesc);
+      const ou = document.querySelector('meta[property="og:url"]');
+      if (ou) ou.setAttribute("content", "https://muxuantw.com");
+      const otp = document.querySelector('meta[property="og:type"]');
+      if (otp) otp.setAttribute("content", "website");
+    };
   }, []);
 
   return (

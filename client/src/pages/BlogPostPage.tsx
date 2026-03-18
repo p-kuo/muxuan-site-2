@@ -62,13 +62,26 @@ export default function BlogPostPage() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
     if (article) {
-      document.title = `${article.title} | 沐璿草本護髮部落格`;
+      const articleUrl = `https://muxuantw.com/blog/${article.slug}`;
+      const articleTitle = `${article.title} | 沐璿草本護髮部落格`;
+
+      document.title = articleTitle;
+
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute("content", article.metaDescription);
 
       const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical)
-        canonical.setAttribute("href", `https://muxuantw.com/blog/${article.slug}`);
+      if (canonical) canonical.setAttribute("href", articleUrl);
+
+      // OG tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", articleTitle);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute("content", article.metaDescription);
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", articleUrl);
+      const ogType = document.querySelector('meta[property="og:type"]');
+      if (ogType) ogType.setAttribute("content", "article");
 
       // Article JSON-LD
       const existing = document.getElementById("article-jsonld");
@@ -111,14 +124,20 @@ export default function BlogPostPage() {
       const existing = document.getElementById("article-jsonld");
       if (existing) existing.remove();
       document.title = "沐璿草本護髮 | 天然・安全・有效";
+      const defaultDesc = "沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，專業改善白髮、落髮、頭皮屑等問題。台北、嘉義、新加坡服務。";
       const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc)
-        metaDesc.setAttribute(
-          "content",
-          "沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，專業改善白髮、落髮、頭皮屑等問題。台北、嘉義、新加坡服務。"
-        );
+      if (metaDesc) metaDesc.setAttribute("content", defaultDesc);
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) canonical.setAttribute("href", "https://muxuantw.com");
+      // Restore OG tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", "沐璿草本護髮中心｜天然草本護髮・頭皮SPA");
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute("content", defaultDesc);
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", "https://muxuantw.com");
+      const ogType = document.querySelector('meta[property="og:type"]');
+      if (ogType) ogType.setAttribute("content", "website");
     };
   }, [article]);
 

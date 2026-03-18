@@ -263,32 +263,40 @@ export default function Navbar() {
 
                   {/* Mobile knowledge section with inline expansion */}
                   <li>
-                    <button
-                      onClick={() => setMobileKnowledgeOpen((o) => !o)}
-                      className={cn(
-                        "w-full flex items-center justify-between text-lg font-medium py-2 border-b border-border/50 transition-colors",
-                        isKnowledgeActive ? "text-primary" : "hover:text-primary"
-                      )}
-                      aria-expanded={mobileKnowledgeOpen}
-                      aria-label="展開或收合知識選單"
-                    >
+                    <div className={cn(
+                      "flex items-center justify-between border-b border-border/50",
+                      isKnowledgeActive ? "text-primary" : ""
+                    )}>
+                      {/* Direct link to /faq */}
                       <Link
                         href="/faq"
                         title="草本護髮常見問與答"
-                        onClick={(e) => e.stopPropagation()}
+                        aria-current={location === "/faq" ? "page" : undefined}
                         className={cn(
-                          isKnowledgeActive ? "text-primary" : ""
+                          "flex-1 text-lg font-medium py-2 transition-colors",
+                          isKnowledgeActive ? "text-primary" : "hover:text-primary"
                         )}
                       >
                         常見問題
                       </Link>
-                      <ChevronDown
+                      {/* Separate chevron button for expand/collapse */}
+                      <button
+                        onClick={() => setMobileKnowledgeOpen((o) => !o)}
+                        aria-expanded={mobileKnowledgeOpen}
+                        aria-label="展開或收合知識選單"
                         className={cn(
-                          "w-5 h-5 transition-transform duration-200",
-                          mobileKnowledgeOpen ? "rotate-180" : ""
+                          "p-2 transition-colors",
+                          isKnowledgeActive ? "text-primary" : "text-muted-foreground hover:text-primary"
                         )}
-                      />
-                    </button>
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "w-5 h-5 transition-transform duration-200",
+                            mobileKnowledgeOpen ? "rotate-180" : ""
+                          )}
+                        />
+                      </button>
+                    </div>
 
                     {mobileKnowledgeOpen && (
                       <ul className="pl-4 mt-1 flex flex-col gap-1 list-none">
