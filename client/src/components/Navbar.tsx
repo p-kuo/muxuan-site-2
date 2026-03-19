@@ -152,47 +152,32 @@ export default function Navbar() {
               </li>
             ))}
 
-            {/* 常見問題 split-style dropdown (hover + click) */}
+            {/* 常見問題 — unified trigger with dropdown */}
             <li
-              className="flex items-center"
               onMouseEnter={() => setKnowledgeDropdownOpen(true)}
               onMouseLeave={() => setKnowledgeDropdownOpen(false)}
             >
-              {/* Left: text link navigates directly to /faq */}
-              <Link
-                href="/faq"
-                title="草本護髮常見問與答"
-                aria-label="草本護髮常見問與答"
-                aria-current={location === "/faq" ? "page" : undefined}
-                className={cn(
-                  "pl-3 pr-1 py-2 text-sm font-medium rounded-l-md transition-colors relative inline-block",
-                  "after:absolute after:bottom-1 after:left-3 after:right-1 after:h-[2px] after:bg-primary",
-                  "after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left",
-                  isKnowledgeActive
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
-                )}
-              >
-                常見問題
-              </Link>
-
-              {/* Right: chevron — opens dropdown on hover or click */}
               <DropdownMenu
                 open={knowledgeDropdownOpen}
                 onOpenChange={setKnowledgeDropdownOpen}
               >
                 <DropdownMenuTrigger asChild>
                   <button
-                    aria-label="展開知識選單"
+                    aria-label="常見問題選單"
                     aria-haspopup="true"
                     aria-expanded={knowledgeDropdownOpen}
+                    aria-current={location === "/faq" ? "page" : undefined}
+                    onClick={() => navigate("/faq")}
                     className={cn(
-                      "pr-2 pl-0.5 py-2 text-sm font-medium rounded-r-md transition-colors",
+                      "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors relative",
+                      "after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-primary",
+                      "after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left",
                       isKnowledgeActive
                         ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                     )}
                   >
+                    常見問題
                     <ChevronDown
                       className={cn(
                         "w-3.5 h-3.5 transition-transform duration-150",
