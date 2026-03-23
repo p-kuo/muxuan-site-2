@@ -17,7 +17,7 @@ function isQSection(section: ArticleSection) {
   return section.type === "h2" && !!section.text?.startsWith("Q");
 }
 
-function renderSection(section: ArticleSection, index: number, prevWasQ = false) {
+function renderSection(section: ArticleSection, index: number) {
   switch (section.type) {
     case "h2": {
       if (isQSection(section)) {
@@ -58,16 +58,6 @@ function renderSection(section: ArticleSection, index: number, prevWasQ = false)
         </h3>
       );
     case "p":
-      if (prevWasQ) {
-        return (
-          <div
-            key={index}
-            className="bg-secondary/50 rounded-xl border border-border/40 px-5 py-4 mb-4"
-          >
-            <p className="text-foreground/80 text-base leading-8 m-0">{section.text}</p>
-          </div>
-        );
-      }
       return (
         <p key={index} className="text-foreground/80 text-base leading-8 mb-4">
           {section.text}
@@ -93,11 +83,7 @@ function renderSection(section: ArticleSection, index: number, prevWasQ = false)
 }
 
 function renderSections(content: ArticleSection[]) {
-  return content.map((section, i) => {
-    const prev = content[i - 1];
-    const prevWasQ = !!prev && isQSection(prev);
-    return renderSection(section, i, prevWasQ);
-  });
+  return content.map((section, i) => renderSection(section, i));
 }
 
 export default function BlogPostPage() {
