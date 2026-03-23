@@ -62,11 +62,8 @@ function renderSection(section: ArticleSection, index: number, prevWasQ = false)
         return (
           <div
             key={index}
-            className="flex items-start gap-4 bg-secondary/50 rounded-xl border border-border/40 px-5 py-4 mb-4"
+            className="bg-secondary/50 rounded-xl border border-border/40 px-5 py-4 mb-4"
           >
-            <span className="shrink-0 font-bold text-muted-foreground text-lg leading-snug pt-0.5 min-w-[2rem]">
-              A
-            </span>
             <p className="text-foreground/80 text-base leading-8 m-0">{section.text}</p>
           </div>
         );
@@ -78,13 +75,13 @@ function renderSection(section: ArticleSection, index: number, prevWasQ = false)
       );
     case "ul":
       return (
-        <ul key={index} className="list-none space-y-2 mb-6 pl-0">
+        <ul key={index} className="list-none space-y-2 mb-6 pl-0 border-l-2 border-primary/20 ml-1">
           {section.items?.map((item, i) => (
             <li
               key={i}
-              className="flex items-start gap-3 bg-primary/5 border border-primary/10 rounded-xl px-4 py-2.5 text-foreground/80 text-base leading-relaxed"
+              className="flex items-start gap-3 pl-4 text-foreground/80 text-base leading-relaxed"
             >
-              <span className="mt-0.5 text-primary shrink-0 text-base">✦</span>
+              <span className="mt-1 text-primary shrink-0 text-sm">✦</span>
               {item}
             </li>
           ))}
