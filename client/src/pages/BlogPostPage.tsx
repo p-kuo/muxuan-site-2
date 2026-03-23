@@ -14,7 +14,7 @@ function formatDate(dateStr: string) {
 }
 
 function isQSection(section: ArticleSection) {
-  return section.type === "h2" && !!section.text?.match(/^Q\d*[：:]/);
+  return section.type === "h2" && !!section.text?.startsWith("Q");
 }
 
 function renderSection(section: ArticleSection, index: number, prevWasQ = false) {
