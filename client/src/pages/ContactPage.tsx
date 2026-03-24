@@ -181,8 +181,8 @@ export default function ContactPage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
               有任何問題嗎？
             </h2>
-            <p className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
-              先查看常見問題，或直接透過 LINE 與我們聯繫。
+            <p className="text-white/80 text-lg mb-8 text-center">
+              直接透過 LINE 與我們聯繫
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
