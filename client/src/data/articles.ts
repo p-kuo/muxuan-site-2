@@ -29,6 +29,7 @@ export const articles: Article[] = [
     metaDescription:
       "頭皮出油的 5 大真正原因：皮脂腺過度分泌、洗髮方式錯誤、飲食油膩、壓力荷爾蒙、以及錯誤的護髮產品。沐璿草本護髮中心為您深度解析並提供天然調理建議。",
     coverAlt: "頭皮出油分析與草本調理 — 沐璿草本護髮中心",
+    coverImage: "https://images.unsplash.com/photo-1626954079673-f20fe57f76ac?w=1200&q=80",
     content: [
       {
         type: "p",
