@@ -3,14 +3,14 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
 
-import singaporeIcon from "@assets/singapore_icon.png";
-import image123 from "@assets/123.png";
+import singaporeImg from "@assets/Singapore.png";
 import shopImg from "@assets/shop.png";
+import image123 from "@assets/123.png";
 import storyImgPng from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs.png";
 import story320w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-320w.webp";
 import story640w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-640w.webp";
@@ -18,6 +18,9 @@ import story1024w from "@assets/generated_images/symbolic_herbal_journey_image_w
 import story320wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-320w.avif";
 import story640wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-640w.avif";
 import story1024wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-1024w.avif";
+import herbsImg from "@assets/generated_images/traditional_chinese_herbs_composition_including_ginseng_and_angelica.png";
+import naturalHerbsImg from "@assets/generated_images/close_up_of_natural_herbs_and_botanical_ingredients.png";
+import salonImg from "@assets/generated_images/happy_mid-age_chinese_man_enjoying_herbal_hair_steam_treatment_in_salon.png";
 
 const storySrcSet = [
   { width: 320, webpSrc: story320w, avifSrc: story320wAvif },
@@ -25,42 +28,73 @@ const storySrcSet = [
   { width: 1024, webpSrc: story1024w, avifSrc: story1024wAvif },
 ];
 
-const milestones = [
+interface Milestone {
+  year: string;
+  title: string;
+  description: string;
+  address?: string;
+  image: string;
+  imageAlt: string;
+  tag?: string;
+}
+
+const milestones: Milestone[] = [
   {
     year: "2009",
     title: "緣起新加坡",
     description:
-      "創辦人葉玉女在新加坡四馬路觀音廟的指點下，開始研究能解決頭皮問題的天然配方",
+      "創辦人葉玉女在新加坡四馬路觀音廟的指點下，踏上天然草本頭皮護理的研究之路，開始深入鑽研能真正解決頭皮問題的天然配方。",
+    image: singaporeImg,
+    imageAlt: "新加坡 — 沐璿草本護髮的起源地",
+    tag: "起源",
   },
   {
     year: "2011",
     title: "沐璿正式成立",
     description:
-      "沐璿正式成立，擴大服務客群將這份專業帶給其他有需要的人",
+      "歷經無數次試驗，草本配方研發成功。沐璿正式成立，開始將這份專業帶給有需要的人。",
+    image: image123,
+    imageAlt: "沐璿草本護髮中心品牌標誌",
+    tag: "創立",
   },
   {
     year: "2012",
     title: "台北店正式開幕",
-    description: "沐璿的第一家實體店面就座落在繁華的台北華山市場",
+    description:
+      "沐璿第一家實體店面在台北華山市場正式開幕，將天然草本護髮服務帶入繁華都會。",
     address: "臺北市忠孝東路一段108號2樓",
+    image: herbsImg,
+    imageAlt: "台北店草本護髮服務",
+    tag: "台北",
   },
   {
     year: "2017",
     title: "新加坡店正式開幕",
-    description: "實體店面的開幕，將更專業，高品質的服務帶給新加坡顧客",
+    description:
+      "回到品牌緣起之地，新加坡實體店面正式開幕，將更專業、高品質的服務帶給在地顧客。",
     address: "530 Bedok North St 3, #01-646",
+    image: shopImg,
+    imageAlt: "沐璿新加坡店面",
+    tag: "新加坡",
   },
   {
     year: "2019",
-    title: "嘉義吳鳳南路店正式開幕",
-    description: "從住家到店面，將更專業的服務帶給有需要的人",
+    title: "嘉義吳鳳南路店開幕",
+    description:
+      "從住家到店面，沐璿將草本護髮的專業服務延伸至嘉義，讓更多南台灣的朋友受惠。",
     address: "嘉義市吳鳳南路15-1號",
+    image: naturalHerbsImg,
+    imageAlt: "天然草本成分",
+    tag: "嘉義",
   },
   {
     year: "現在",
     title: "四店持續服務",
     description:
       "台北、嘉義兩店、新加坡，沐璿以最天然的成分、最安全的配方，持續守護每一位客人的頭皮健康，實踐「好的產品應讓更多人受惠」的初心。",
+    image: salonImg,
+    imageAlt: "沐璿草本護髮專業服務",
+    tag: "持續",
   },
 ];
 
@@ -172,11 +206,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 md:py-32 bg-white overflow-hidden">
+      {/* Timeline — In-N-Out style alternating image/text */}
+      <section className="py-20 md:py-32 bg-[#f9f7f4] overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -190,54 +224,158 @@ export default function AboutPage() {
             </h2>
           </motion.div>
 
-          {/* Vertical single column */}
-          <div className="relative max-w-xs mx-auto">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 -translate-x-1/2" />
-            {milestones.map((item) => (
-              <motion.div
-                key={item.year}
-                className="relative mb-10 last:mb-0"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: 0.05 }}
-              >
-                <div className="absolute left-1/2 top-0 -translate-x-1/2 w-3 h-3 rounded-full bg-primary border-2 border-white shadow-sm z-10" />
-                <div className="border border-primary bg-white overflow-hidden mt-4">
-                  {item.year === "2009" && (
-                    <div className="w-full overflow-hidden">
-                      <img src={singaporeIcon} alt="新加坡地圖" className="w-full h-auto" style={{ marginTop: "-50%" }} />
+          {/* Timeline entries */}
+          <div className="relative max-w-6xl mx-auto">
+
+            {/* Central vertical line — desktop only */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary/15 -translate-x-1/2" />
+
+            {milestones.map((item, index) => {
+              const imageOnLeft = index % 2 === 0;
+              return (
+                <motion.div
+                  key={item.year}
+                  className="relative mb-8 md:mb-0"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                >
+                  {/* Desktop: two-column alternating */}
+                  <div className="hidden md:grid md:grid-cols-2 md:min-h-[420px]">
+
+                    {/* Left column */}
+                    <div className={`flex items-stretch ${imageOnLeft ? "pr-16" : "pl-16"} py-10`}>
+                      {imageOnLeft ? (
+                        /* Image on left */
+                        <div className="relative w-full group">
+                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg h-full min-h-[300px]">
+                            <img
+                              src={item.image}
+                              alt={item.imageAlt}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                            {item.tag && (
+                              <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                                {item.tag}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        /* Text on left */
+                        <div className="flex flex-col justify-center text-right w-full">
+                          <span className="block text-7xl font-serif font-bold text-primary/25 leading-none mb-3 tabular-nums">
+                            {item.year}
+                          </span>
+                          <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
+                            {item.title}
+                          </h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {item.description}
+                          </p>
+                          {item.address && (
+                            <p className="flex items-center justify-end gap-1.5 mt-3 text-sm text-primary font-medium">
+                              <MapPin className="w-3.5 h-3.5 shrink-0" />
+                              {item.address}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  )}
-                  {item.year === "2011" && (
-                    <div className="w-full flex justify-center py-4">
-                      <img src={image123} alt="沐璿草本護髮標誌" className="w-40 h-auto" />
+
+                    {/* Center dot */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                      <div className="w-5 h-5 rounded-full bg-primary border-4 border-[#f9f7f4] shadow-md" />
                     </div>
-                  )}
-                  {item.year === "2017" && (
-                    <div className="w-full overflow-hidden">
-                      <img src={shopImg} alt="新加坡店" className="w-full h-auto" style={{ marginTop: "-12%" }} />
+
+                    {/* Right column */}
+                    <div className={`flex items-stretch ${imageOnLeft ? "pl-16" : "pr-16"} py-10`}>
+                      {imageOnLeft ? (
+                        /* Text on right */
+                        <div className="flex flex-col justify-center text-left w-full">
+                          <span className="block text-7xl font-serif font-bold text-primary/25 leading-none mb-3 tabular-nums">
+                            {item.year}
+                          </span>
+                          <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
+                            {item.title}
+                          </h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {item.description}
+                          </p>
+                          {item.address && (
+                            <p className="flex items-center gap-1.5 mt-3 text-sm text-primary font-medium">
+                              <MapPin className="w-3.5 h-3.5 shrink-0" />
+                              {item.address}
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        /* Image on right */
+                        <div className="relative w-full group">
+                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg h-full min-h-[300px]">
+                            <img
+                              src={item.image}
+                              alt={item.imageAlt}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                            {item.tag && (
+                              <span className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                                {item.tag}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                  <div className="px-6 pt-4 pb-6">
-                    <span className="block text-6xl font-serif font-bold text-primary/60 leading-none mb-2 text-center">
-                      {item.year}
-                    </span>
-                    <h3 className="text-xl font-serif font-bold text-foreground mb-3 text-center">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm whitespace-pre-line">
-                      {item.description}
-                    </p>
-                    {"address" in item && (
-                      <p className="text-muted-foreground leading-relaxed text-sm font-bold mt-1">
-                        {item.address}
-                      </p>
-                    )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Mobile: image top, text bottom, left rail */}
+                  <div className="md:hidden flex gap-5 pb-10 last:pb-0 relative">
+                    {/* Left rail dot */}
+                    <div className="shrink-0 flex flex-col items-center">
+                      <div className="w-4 h-4 rounded-full bg-primary border-4 border-[#f9f7f4] shadow-sm mt-1 shrink-0" />
+                      {index < milestones.length - 1 && (
+                        <div className="w-[2px] flex-1 bg-primary/15 mt-2" />
+                      )}
+                    </div>
+                    {/* Content */}
+                    <div className="flex-1 pb-2">
+                      <div className="relative overflow-hidden rounded-xl border border-primary/20 shadow-md mb-4 aspect-video">
+                        <img
+                          src={item.image}
+                          alt={item.imageAlt}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                        {item.tag && (
+                          <span className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-0.5 rounded-full">
+                            {item.tag}
+                          </span>
+                        )}
+                      </div>
+                      <span className="block text-4xl font-serif font-bold text-primary/30 leading-none mb-1 tabular-nums">
+                        {item.year}
+                      </span>
+                      <h3 className="text-lg font-serif font-bold text-foreground mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        {item.description}
+                      </p>
+                      {item.address && (
+                        <p className="flex items-center gap-1.5 mt-2 text-xs text-primary font-medium">
+                          <MapPin className="w-3 h-3 shrink-0" />
+                          {item.address}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
