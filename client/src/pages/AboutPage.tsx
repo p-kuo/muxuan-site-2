@@ -112,7 +112,8 @@ const milestones: Milestone[] = [
 ];
 
 const imageObjectPosition: Record<string, string> = {
-  "2017": "center 35%",
+  "2009": "center 45%",
+  "2017": "center 40%",
 };
 
 const aboutJsonLd = {
