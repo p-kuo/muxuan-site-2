@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,10 +15,10 @@ const scrollNavItems: { name: string; id: string; title: string }[] = [];
 
 // Items that are plain page links
 const pageNavItems = [
+  { name: "首頁",     href: "/",          title: "回到沐璿草本護髮中心首頁" },
   { name: "服務介紹", href: "/services",  title: "查看沐璿草本護髮服務介紹" },
   { name: "關於沐璿", href: "/about",     title: "關於沐璿草本護髮中心的品牌故事" },
   { name: "成功案例", href: "/cases",     title: "查看沐璿草本護髮成功調理案例" },
-  { name: "聯絡我們", href: "/contact",   title: "聯絡沐璿草本護髮中心" },
   { name: "門市資訊", href: "/locations", title: "查看沐璿草本護髮全台及海外門市資訊" },
 ];
 
@@ -35,6 +35,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileKnowledgeOpen, setMobileKnowledgeOpen] = useState(false);
   const [knowledgeDropdownOpen, setKnowledgeDropdownOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [location, navigate] = useLocation();
 
   const isSubPage = location !== "/";
@@ -154,8 +155,13 @@ export default function Navbar() {
 
             {/* 常見問題 — unified trigger with dropdown */}
             <li
-              onMouseEnter={() => setKnowledgeDropdownOpen(true)}
-              onMouseLeave={() => setKnowledgeDropdownOpen(false)}
+              onMouseEnter={() => {
+                if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+                setKnowledgeDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                closeTimeoutRef.current = setTimeout(() => setKnowledgeDropdownOpen(false), 300);
+              }}
             >
               <DropdownMenu
                 open={knowledgeDropdownOpen}
@@ -190,8 +196,13 @@ export default function Navbar() {
                 <DropdownMenuContent
                   align="start"
                   className="w-44 mt-1"
-                  onMouseEnter={() => setKnowledgeDropdownOpen(true)}
-                  onMouseLeave={() => setKnowledgeDropdownOpen(false)}
+                  onMouseEnter={() => {
+                    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+                    setKnowledgeDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    closeTimeoutRef.current = setTimeout(() => setKnowledgeDropdownOpen(false), 300);
+                  }}
                 >
                   {knowledgeDropdownItems.map((sub) => (
                     <DropdownMenuItem key={sub.href} asChild>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://muxuantw.com/</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/services</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/services"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/about</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/about"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/locations</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/locations"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/cases</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/cases"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/faq</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/faq"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/contact</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/contact"/>
+  </url>
+
+  <!-- Blog index -->
+  <url>
+    <loc>https://muxuantw.com/blog</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog"/>
+  </url>
+
+  <!-- Blog articles -->
+  <url>
+    <loc>https://muxuantw.com/blog/hair-dye-cancer-risk</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/hair-dye-cancer-risk"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/blog/heat-styling-hair-damage</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/heat-styling-hair-damage"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/blog/conditioner-scalp-mistakes</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/conditioner-scalp-mistakes"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/blog/postpartum-hair-loss</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/postpartum-hair-loss"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/blog/herbal-vs-chemical-dye</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/herbal-vs-chemical-dye"/>
+  </url>
+  <url>
+    <loc>https://muxuantw.com/blog/scalp-oil-causes</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://muxuantw.com/blog/scalp-oil-causes"/>
+  </url>
+
+</urlset>

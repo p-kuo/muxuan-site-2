@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +13,21 @@ import {
 } from "@/components/ui/accordion";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
+import { PictureImage } from "@/components/ui/picture-image";
+
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
+
+const heroBgSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 const faqs = [
   {
@@ -40,7 +56,42 @@ const faqs = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+        { "@type": "ListItem", "position": 2, "name": "常見問題", "item": "https://muxuantw.com/faq" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "url": "https://muxuantw.com/faq",
+      "inLanguage": "zh-TW",
+      "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question.replace(/^Q\d+：/, ""),
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer.replace(/\n+/g, " ").trim(),
+        },
+      })),
+    },
+  ],
+};
+
 export default function FaqPage() {
+  useSeo({
+    title: "草本護髮常見問題 | 沐璿草本護髮中心",
+    description: "關於沐璿草本護髮的常見問題：療程是否有效、能否改善落髮、草本與化學染髮的差異，以及費用與護理頻率說明。",
+    canonical: "https://muxuantw.com/faq",
+    ogTitle: "草本護髮常見問題 | 沐璿草本護髮中心",
+    jsonLd: faqJsonLd,
+    jsonLdId: "faq-jsonld",
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
@@ -50,8 +101,28 @@ export default function FaqPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/40 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <section className="pt-32 pb-16 relative overflow-hidden bg-background">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <PictureImage
+            src={heroBgPng}
+            srcSetEntries={heroBgSrcSet}
+            alt=""
+            aria-hidden="true"
+            width={1024}
+            height={1024}
+            sizes="100vw"
+            priority={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-55"
+          />
+        </div>
+        {/* Left-to-right gradient keeps text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
+        {/* Bottom fade blends into content below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        {/* Subtle brand warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.10),transparent_55%)]" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

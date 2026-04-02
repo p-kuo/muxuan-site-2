@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +7,22 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, Clock, CalendarDays, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
+import { PictureImage } from "@/components/ui/picture-image";
 import { articles } from "@/data/articles";
+
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
+
+const heroBgSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -19,46 +35,52 @@ const categoryColors: Record<string, string> = {
   護髮教學: "bg-sky-50 text-sky-700 border-sky-200",
 };
 
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+        { "@type": "ListItem", "position": 2, "name": "護髮部落格", "item": "https://muxuantw.com/blog" },
+      ],
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://muxuantw.com/blog",
+      "name": "沐璿草本護髮部落格",
+      "url": "https://muxuantw.com/blog",
+      "inLanguage": "zh-TW",
+      "description": "深度解析頭皮知識、草本成分與護髮教學，幫助您從根本了解頭皮健康。",
+      "publisher": { "@id": "https://muxuantw.com/#organization" },
+      "blogPost": articles.map((a) => ({
+        "@type": "BlogPosting",
+        "headline": a.title,
+        "url": `https://muxuantw.com/blog/${a.slug}`,
+        "datePublished": a.date,
+        "description": a.metaDescription,
+        "author": {
+          "@type": "Person",
+          "name": "沐璿護理師",
+          "worksFor": { "@id": "https://muxuantw.com/#organization" },
+        },
+      })),
+    },
+  ],
+};
+
 export default function BlogPage() {
+  useSeo({
+    title: "護髮部落格 | 沐璿草本護髮中心",
+    description: "沐璿草本護髮部落格：深度解析頭皮出油、草本染髮、產後落髮、護髮素使用誤區、熱造型傷髮等頭皮知識，幫助您從根本了解頭皮健康。",
+    canonical: "https://muxuantw.com/blog",
+    ogTitle: "護髮部落格 | 沐璿草本護髮中心",
+    jsonLd: blogJsonLd,
+    jsonLdId: "blog-jsonld",
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    const blogTitle = "護髮部落格 | 沐璿草本護髮中心";
-    const blogDesc = "沐璿草本護髮中心護髮部落格：深度解析頭皮知識、草本成分與護髮教學，幫助您從根本了解頭皮健康。";
-    const blogUrl = "https://muxuantw.com/blog";
-
-    document.title = blogTitle;
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", blogDesc);
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute("href", blogUrl);
-
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", blogTitle);
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", blogDesc);
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute("content", blogUrl);
-    const ogType = document.querySelector('meta[property="og:type"]');
-    if (ogType) ogType.setAttribute("content", "website");
-
-    return () => {
-      document.title = "沐璿草本護髮 | 天然・安全・有效";
-      const defaultDesc = "沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，專業改善白髮、落髮、頭皮屑等問題。台北、嘉義、新加坡服務。";
-      const md = document.querySelector('meta[name="description"]');
-      if (md) md.setAttribute("content", defaultDesc);
-      const cn = document.querySelector('link[rel="canonical"]');
-      if (cn) cn.setAttribute("href", "https://muxuantw.com");
-      const ot = document.querySelector('meta[property="og:title"]');
-      if (ot) ot.setAttribute("content", "沐璿草本護髮中心｜天然草本護髮・頭皮SPA");
-      const od = document.querySelector('meta[property="og:description"]');
-      if (od) od.setAttribute("content", defaultDesc);
-      const ou = document.querySelector('meta[property="og:url"]');
-      if (ou) ou.setAttribute("content", "https://muxuantw.com");
-      const otp = document.querySelector('meta[property="og:type"]');
-      if (otp) otp.setAttribute("content", "website");
-    };
   }, []);
 
   return (
@@ -66,8 +88,28 @@ export default function BlogPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/40 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <section className="pt-32 pb-16 relative overflow-hidden bg-background">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <PictureImage
+            src={heroBgPng}
+            srcSetEntries={heroBgSrcSet}
+            alt=""
+            aria-hidden="true"
+            width={1024}
+            height={1024}
+            sizes="100vw"
+            priority={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-55"
+          />
+        </div>
+        {/* Left-to-right gradient keeps text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
+        {/* Bottom fade blends into content below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        {/* Subtle brand warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.10),transparent_55%)]" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

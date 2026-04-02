@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +11,16 @@ import { PictureImage } from "@/components/ui/picture-image";
 
 import singaporeImg from "@assets/Singapore.png";
 import shopImg from "@assets/shop.png";
+import shopJpegImg from "@assets/generated_images/shop.jpeg";
+import shop1Img from "@assets/generated_images/shop1.jpeg";
 import image123 from "@assets/123.png";
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
 import storyImgPng from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs.png";
 import story320w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-320w.webp";
 import story640w from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-640w.webp";
@@ -20,7 +30,12 @@ import story640wAvif from "@assets/generated_images/symbolic_herbal_journey_imag
 import story1024wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-1024w.avif";
 import herbsImg from "@assets/generated_images/traditional_chinese_herbs_composition_including_ginseng_and_angelica.png";
 import naturalHerbsImg from "@assets/generated_images/close_up_of_natural_herbs_and_botanical_ingredients.png";
-import salonImg from "@assets/generated_images/happy_mid-age_chinese_man_enjoying_herbal_hair_steam_treatment_in_salon.png";
+
+const heroBgSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 const storySrcSet = [
   { width: 320, webpSrc: story320w, avifSrc: story320wAvif },
@@ -33,8 +48,8 @@ interface Milestone {
   title: string;
   description: string;
   address?: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   tag?: string;
 }
 
@@ -83,8 +98,8 @@ const milestones: Milestone[] = [
     description:
       "從住家到店面，沐璿將草本護髮的專業服務延伸至嘉義，讓更多南台灣的朋友受惠。",
     address: "嘉義市吳鳳南路15-1號",
-    image: naturalHerbsImg,
-    imageAlt: "天然草本成分",
+    image: shopJpegImg,
+    imageAlt: "沐璿草本護髮嘉義吳鳳南路店 — 嘉義草本頭皮護理中心門市",
     tag: "嘉義",
   },
   {
@@ -92,13 +107,46 @@ const milestones: Milestone[] = [
     title: "四店持續服務",
     description:
       "台北、嘉義兩店、新加坡，沐璿以最天然的成分、最安全的配方，持續守護每一位客人的頭皮健康，實踐「好的產品應讓更多人受惠」的初心。",
-    image: salonImg,
-    imageAlt: "沐璿草本護髮專業服務",
     tag: "持續",
   },
 ];
 
+const imageObjectPosition: Record<string, string> = {
+  "2017": "center 35%",
+};
+
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+        { "@type": "ListItem", "position": 2, "name": "品牌故事", "item": "https://muxuantw.com/about" },
+      ],
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://muxuantw.com/about",
+      "name": "品牌故事 | 沐璿草本護髮中心",
+      "url": "https://muxuantw.com/about",
+      "inLanguage": "zh-TW",
+      "about": { "@id": "https://muxuantw.com/#organization" },
+      "description": "沐璿草本護髮中心品牌故事：從2009年創辦人葉玉女在新加坡的啟程，歷經多年草本研究，於台灣台北、嘉義建立專業草本護髮中心。",
+    },
+  ],
+};
+
 export default function AboutPage() {
+  useSeo({
+    title: "品牌故事 | 沐璿草本護髮中心",
+    description: "了解沐璿草本護髮中心的品牌故事——從2009年創辦人葉玉女在新加坡的啟程，到台北、嘉義多家門市的草本護髮事業，15年天然護髮專業。",
+    canonical: "https://muxuantw.com/about",
+    ogTitle: "品牌故事 | 沐璿草本護髮中心",
+    jsonLd: aboutJsonLd,
+    jsonLdId: "about-jsonld",
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
@@ -108,31 +156,112 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/40 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <section className="pt-32 pb-0 relative overflow-hidden bg-background">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <PictureImage
+            src={heroBgPng}
+            srcSetEntries={heroBgSrcSet}
+            alt=""
+            aria-hidden="true"
+            width={1024}
+            height={1024}
+            sizes="100vw"
+            priority={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-55"
+          />
+        </div>
+        {/* Left-to-right gradient keeps text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
+        {/* Bottom fade blends into content below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        {/* Subtle brand warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.10),transparent_55%)]" />
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <nav aria-label="頁面路徑" className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-              <Link href="/" title="回到沐璿草本護髮中心首頁" className="hover:text-primary transition-colors">
-                首頁
-              </Link>
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              <span className="text-foreground font-medium" aria-current="page">關於沐璿</span>
-            </nav>
-            <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
-              品牌故事
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-              關於沐璿草本護髮中心
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              源自對「真正安全、天然、有效」護髮方式的追求，一個三代人共同走過的草本療癒旅程。
-            </p>
-          </motion.div>
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+            {/* Left — copy, quote, stats */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <nav aria-label="頁面路徑" className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                <Link href="/" title="回到沐璿草本護髮中心首頁" className="hover:text-primary transition-colors">
+                  首頁
+                </Link>
+                <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                <span className="text-foreground font-medium" aria-current="page">關於沐璿</span>
+              </nav>
+
+              <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
+                品牌故事
+              </Badge>
+
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 leading-tight">
+                關於沐璿<br />草本護髮中心
+              </h1>
+
+              <p className="text-muted-foreground text-base md:text-lg mb-6 leading-relaxed">
+                源自對「真正安全、天然、有效」護髮方式的追求，一個三代人共同走過的草本療癒旅程。
+              </p>
+
+              {/* Founder's pull-quote */}
+              <blockquote className="border-l-2 border-primary/40 pl-4 mb-8">
+                <p className="font-serif italic text-foreground/70 text-base leading-relaxed">
+                  「好的產品，應讓更多人受惠。」
+                </p>
+                <cite className="text-xs text-muted-foreground not-italic mt-1 block">— 創辦人 葉玉女</cite>
+              </blockquote>
+
+              {/* Stats chips */}
+              <div className="grid grid-cols-4 gap-3">
+                {[
+                  { value: "2011", label: "創立" },
+                  { value: "4", label: "服務據點" },
+                  { value: "15+", label: "年專業經驗" },
+                ].map((s, i) => (
+                  <motion.div
+                    key={s.label}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.05 }}
+                    className="bg-white/70 backdrop-blur-sm border border-border/40 rounded-xl px-2 py-3 text-center shadow-sm"
+                  >
+                    <p className="text-lg font-bold text-primary leading-none mb-1">{s.value}</p>
+                    <p className="text-[11px] text-muted-foreground leading-tight">{s.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right — image (desktop only) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, delay: 0.1 }}
+              className="hidden md:block relative"
+            >
+              {/* Decorative glow blob */}
+              <div className="absolute -top-6 -right-6 w-36 h-36 rounded-full bg-primary/8 blur-2xl pointer-events-none" />
+
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+                <img
+                  src={shop1Img}
+                  alt="沐璿草本護髮中心門市 — MU HERB草本護髮品牌標誌，台灣草本頭皮護理專家"
+                  width={800}
+                  height={600}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  className="w-full h-full object-cover object-left-top"
+                />
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
@@ -246,27 +375,24 @@ export default function AboutPage() {
 
                     {/* Left column */}
                     <div className="flex items-stretch pr-12 py-10">
-                      {imageOnLeft ? (
+                      {imageOnLeft && item.image ? (
                         /* Image on left */
                         <div className="relative w-full group">
-                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg h-full min-h-[300px]">
+                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg aspect-square">
                             <img
                               src={item.image}
                               alt={item.imageAlt}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                              style={{ objectPosition: imageObjectPosition[item.year] ?? "center center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-                            {item.tag && (
-                              <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-                                {item.tag}
-                              </span>
-                            )}
                           </div>
                         </div>
                       ) : (
                         /* Text on left */
                         <div className="flex flex-col justify-center text-right w-full">
-                          <span className="block text-7xl font-serif font-bold text-primary/25 leading-none mb-3 tabular-nums">
+                          <span className="block text-7xl font-serif font-bold text-primary/60 leading-none mb-3 tabular-nums">
                             {item.year}
                           </span>
                           <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
@@ -295,7 +421,7 @@ export default function AboutPage() {
                       {imageOnLeft ? (
                         /* Text on right */
                         <div className="flex flex-col justify-center text-left w-full">
-                          <span className="block text-7xl font-serif font-bold text-primary/25 leading-none mb-3 tabular-nums">
+                          <span className="block text-7xl font-serif font-bold text-primary/60 leading-none mb-3 tabular-nums">
                             {item.year}
                           </span>
                           <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
@@ -311,24 +437,21 @@ export default function AboutPage() {
                             </p>
                           )}
                         </div>
-                      ) : (
+                      ) : item.image ? (
                         /* Image on right */
                         <div className="relative w-full group">
-                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg h-full min-h-[300px]">
+                          <div className="relative overflow-hidden rounded-xl border-2 border-primary/20 shadow-lg aspect-square">
                             <img
                               src={item.image}
                               alt={item.imageAlt}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                              style={{ objectPosition: imageObjectPosition[item.year] ?? "center center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-                            {item.tag && (
-                              <span className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-                                {item.tag}
-                              </span>
-                            )}
                           </div>
                         </div>
-                      )}
+                      ) : null}
                     </div>
                   </div>
 
@@ -343,20 +466,20 @@ export default function AboutPage() {
                     </div>
                     {/* Content */}
                     <div className="flex-1 pb-2">
-                      <div className="relative overflow-hidden rounded-xl border border-primary/20 shadow-md mb-4 aspect-video">
-                        <img
-                          src={item.image}
-                          alt={item.imageAlt}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-                        {item.tag && (
-                          <span className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-0.5 rounded-full">
-                            {item.tag}
-                          </span>
-                        )}
-                      </div>
-                      <span className="block text-4xl font-serif font-bold text-primary/30 leading-none mb-1 tabular-nums">
+                      {item.image && (
+                        <div className="relative overflow-hidden rounded-xl border border-primary/20 shadow-md mb-4 aspect-square">
+                          <img
+                            src={item.image}
+                            alt={item.imageAlt}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover object-center"
+                            style={{ objectPosition: imageObjectPosition[item.year] ?? "center center" }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                        </div>
+                      )}
+                      <span className="block text-4xl font-serif font-bold text-primary/60 leading-none mb-1 tabular-nums">
                         {item.year}
                       </span>
                       <h3 className="text-lg font-serif font-bold text-foreground mb-2">

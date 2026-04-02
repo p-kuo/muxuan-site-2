@@ -84,6 +84,28 @@ function renderSection(section: ArticleSection, index: number) {
           ))}
         </ul>
       );
+    case "ref":
+      return (
+        <div key={index} className="mt-10 pt-6 border-t border-border/40">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+            參考資料
+          </p>
+          <ol className="list-decimal list-inside space-y-2">
+            {section.links?.map((link, i) => (
+              <li key={i} className="text-sm text-muted-foreground leading-relaxed">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline underline-offset-2"
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      );
     default:
       return null;
   }
@@ -126,7 +148,7 @@ export default function BlogPostPage() {
       const ogImage = document.querySelector('meta[property="og:image"]');
       if (ogImage) ogImage.setAttribute("content", resolvedOgImage);
 
-      // Article JSON-LD
+      // Article + BreadcrumbList JSON-LD
       const existing = document.getElementById("article-jsonld");
       if (existing) existing.remove();
       const script = document.createElement("script");
@@ -134,32 +156,44 @@ export default function BlogPostPage() {
       script.type = "application/ld+json";
       script.textContent = JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Article",
-        name: article.title,
-        headline: article.title,
-        description: article.metaDescription,
-        datePublished: article.date,
-        dateModified: article.date,
-        author: {
-          "@type": "Person",
-          name: "沐璿護理師",
-          worksFor: {
-            "@type": "Organization",
-            name: "沐璿草本護髮中心",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+              { "@type": "ListItem", "position": 2, "name": "護髮部落格", "item": "https://muxuantw.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://muxuantw.com/blog/${article.slug}` },
+            ],
           },
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "沐璿草本護髮中心",
-          url: "https://muxuantw.com",
-        },
-        url: `https://muxuantw.com/blog/${article.slug}`,
-        inLanguage: "zh-TW",
-        image: {
-          "@type": "ImageObject",
-          url: article.coverImage ?? globalOgImage,
-          description: article.coverAlt,
-        },
+          {
+            "@type": "BlogPosting",
+            "@id": `https://muxuantw.com/blog/${article.slug}`,
+            "headline": article.title,
+            "name": article.title,
+            "description": article.metaDescription,
+            "datePublished": article.date,
+            "dateModified": article.date,
+            "articleSection": article.category,
+            "inLanguage": "zh-TW",
+            "url": `https://muxuantw.com/blog/${article.slug}`,
+            "isPartOf": { "@id": "https://muxuantw.com/blog" },
+            "author": {
+              "@type": "Person",
+              "name": "沐璿護理師",
+              "worksFor": { "@id": "https://muxuantw.com/#organization" },
+            },
+            "publisher": { "@id": "https://muxuantw.com/#organization" },
+            "image": {
+              "@type": "ImageObject",
+              "url": article.coverImage ?? globalOgImage,
+              "description": article.coverAlt,
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://muxuantw.com/blog/${article.slug}`,
+            },
+          },
+        ],
       });
       document.head.appendChild(script);
 
@@ -358,37 +392,30 @@ export default function BlogPostPage() {
             <h2 className="text-2xl font-serif font-bold text-foreground mb-8">您可能也感興趣</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               {otherArticles.map((a, index) => (
-                <motion.article
-                  key={a.slug}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="bg-white rounded-2xl border border-border/50 shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-3"
-                >
-                  <Badge
-                    variant="outline"
-                    className="self-start border-primary/20 text-primary text-xs"
+                <Link href={`/blog/${a.slug}`} title={a.title} className="block">
+                  <motion.article
+                    key={a.slug}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className="bg-white rounded-2xl border border-border/50 shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-3 cursor-pointer"
                   >
-                    {a.category}
-                  </Badge>
-                  <h3 className="font-serif font-bold text-lg text-foreground leading-snug">
-                    <Link
-                      href={`/blog/${a.slug}`}
-                      title={a.title}
-                      className="hover:text-primary transition-colors"
+                    <Badge
+                      variant="outline"
+                      className="self-start border-primary/20 text-primary text-xs"
                     >
+                      {a.category}
+                    </Badge>
+                    <h3 className="font-serif font-bold text-lg text-foreground leading-snug hover:text-primary transition-colors">
                       {a.title}
-                    </Link>
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{a.excerpt}</p>
-                  <Link
-                    href={`/blog/${a.slug}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary mt-auto"
-                  >
-                    閱讀全文 <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </motion.article>
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{a.excerpt}</p>
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary mt-auto">
+                      閱讀全文 <ChevronRight className="w-4 h-4" />
+                    </span>
+                  </motion.article>
+                </Link>
               ))}
             </div>
           </div>

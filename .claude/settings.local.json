@@ -13,7 +13,10 @@
       "Bash(magick identify:*)",
       "Read(//home/runner/**)",
       "Read(//tmp/**)",
-      "Read(//root/**)"
+      "Read(//root/**)",
+      "Bash(npx tsc:*)",
+      "Bash(cp /home/runner/workspace/attached_assets/generated_images/befo.jpg /home/runner/workspace/client/public/cases/befo.jpg)",
+      "Bash(cp /home/runner/workspace/attached_assets/generated_images/afte.jpg /home/runner/workspace/client/public/cases/afte.jpg)"
     ]
   }
 }

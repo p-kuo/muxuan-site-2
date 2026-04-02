@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Facebook, MapPin, ChevronRight, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
+import { PictureImage } from "@/components/ui/picture-image";
+
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
+
+const heroBgSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 const locations = [
   {
@@ -34,7 +50,37 @@ const locations = [
   },
 ];
 
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+        { "@type": "ListItem", "position": 2, "name": "聯絡我們", "item": "https://muxuantw.com/contact" },
+      ],
+    },
+    {
+      "@type": "ContactPage",
+      "url": "https://muxuantw.com/contact",
+      "inLanguage": "zh-TW",
+      "name": "聯絡沐璿草本護髮中心",
+      "description": "透過LINE、電話聯絡或親自到店諮詢預約。台北、嘉義（市區店、縣府店）、新加坡四處門市歡迎您。",
+      "provider": { "@id": "https://muxuantw.com/#organization" },
+    },
+  ],
+};
+
 export default function ContactPage() {
+  useSeo({
+    title: "聯絡我們 | 沐璿草本護髮中心",
+    description: "透過LINE或電話聯絡沐璿草本護髮中心，預約頭皮護理諮詢。台北、嘉義（市區店與縣府店）、新加坡四處門市歡迎您。",
+    canonical: "https://muxuantw.com/contact",
+    ogTitle: "聯絡我們 | 沐璿草本護髮中心",
+    jsonLd: contactJsonLd,
+    jsonLdId: "contact-jsonld",
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
@@ -44,8 +90,28 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/40 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <section className="pt-32 pb-16 relative overflow-hidden bg-background">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <PictureImage
+            src={heroBgPng}
+            srcSetEntries={heroBgSrcSet}
+            alt=""
+            aria-hidden="true"
+            width={1024}
+            height={1024}
+            sizes="100vw"
+            priority={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-55"
+          />
+        </div>
+        {/* Left-to-right gradient keeps text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
+        {/* Bottom fade blends into content below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        {/* Subtle brand warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.10),transparent_55%)]" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -163,11 +229,11 @@ export default function ContactPage() {
               target="_blank"
               rel="noopener noreferrer"
               title="透過LINE預約沐璿草本護髮"
-              className="flex flex-col items-center gap-3 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
             >
+              <MessageCircle className="w-6 h-6" />
               <span className="text-xl font-bold">LINE 加好友</span>
               <span className="text-sm text-white/80">最快速的預約方式</span>
-              <MessageCircle className="w-8 h-8" />
             </a>
 
             <a
@@ -175,17 +241,17 @@ export default function ContactPage() {
               target="_blank"
               rel="noopener noreferrer"
               title="前往沐璿草本護髮Facebook粉絲頁"
-              className="flex flex-col items-center gap-3 py-8 px-6 rounded-2xl bg-[#1877F2] hover:bg-[#1877F2]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl border border-primary/20 text-primary bg-background shadow-lg transition-all duration-200 hover:bg-gradient-to-br hover:from-[#1877F2] hover:to-[#4267B2] hover:text-white hover:border-transparent hover:shadow-xl hover:-translate-y-0.5 active:from-[#1565C0] active:to-[#365899]"
             >
+              <Facebook className="w-6 h-6" />
               <span className="text-xl font-bold">Facebook</span>
-              <span className="text-sm text-white/80">追蹤最新消息</span>
-              <Facebook className="w-8 h-8" />
+              <span className="text-sm text-muted-foreground">追蹤最新消息</span>
             </a>
 
-            <div className="flex flex-col items-center gap-3 py-8 px-6 rounded-2xl bg-secondary text-foreground shadow-lg">
+            <div className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-primary text-white shadow-lg">
+              <Phone className="w-6 h-6" />
               <span className="text-xl font-bold">電話預約</span>
-              <span className="text-sm text-muted-foreground">請依分店直撥</span>
-              <Phone className="w-8 h-8 text-primary" />
+              <span className="text-sm text-white/80">請依分店直撥</span>
             </div>
           </motion.div>
         </div>

@@ -1,12 +1,28 @@
 import { useEffect } from "react";
+import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, CalendarX, Navigation, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Clock, CalendarX, Navigation, ChevronRight, MessageCircle, Facebook } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
+import { PictureImage } from "@/components/ui/picture-image";
+
+import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
+import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
+import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
+import heroBg1024w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.webp";
+import heroBg320wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.avif";
+import heroBg640wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.avif";
+import heroBg1024wAvif from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-1024w.avif";
+
+const heroBgSrcSet = [
+  { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
+  { width: 640, webpSrc: heroBg640w, avifSrc: heroBg640wAvif },
+  { width: 1024, webpSrc: heroBg1024w, avifSrc: heroBg1024wAvif },
+];
 
 const locations = [
   {
@@ -70,43 +86,26 @@ const locations = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": locations.map((loc) => ({
-    "@type": "BeautySalon",
-    name: loc.name,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: loc.streetAddress,
-      addressLocality: loc.addressLocality,
-      addressRegion: loc.addressRegion,
-      addressCountry: loc.addressCountry,
-    },
-    telephone: loc.phone,
-    openingHours: loc.openingHours,
-    url: "https://muxuantw.com",
-    hasMap: loc.mapUrl,
-    image: "https://muxuantw.com/og-image.png",
-    priceRange: "$$",
-    currenciesAccepted: loc.addressCountry === "SG" ? "SGD" : "TWD",
-    paymentAccepted: "Cash, Credit Card",
-    description: "天然草本護髮中心，提供頭皮護理、草本染髮、落髮調理等服務。",
-  })),
-};
 
 export default function LocationsPage() {
+  useSeo({
+    title: "門市地點與營業時間 | 沐璿草本護髮中心",
+    description: "沐璿草本護髮中心四處門市：台北忠孝東路（02-23967893）、嘉義市吳鳳南路（05-2222166）、嘉義縣府祥和一路（05-3628586）、新加坡Bedok（+65 6538 9589）。週二至週六09:00-18:00。",
+    canonical: "https://muxuantw.com/locations",
+    ogTitle: "門市地點 | 沐璿草本護髮中心",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://muxuantw.com" },
+        { "@type": "ListItem", "position": 2, "name": "門市地點", "item": "https://muxuantw.com/locations" },
+      ],
+    },
+    jsonLdId: "locations-jsonld",
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "locations-jsonld";
-    script.textContent = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
-
-    return () => {
-      document.getElementById("locations-jsonld")?.remove();
-    };
   }, []);
 
   return (
@@ -114,29 +113,62 @@ export default function LocationsPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-secondary/40 to-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_60%)]" />
+      <section className="pt-32 pb-0 relative overflow-hidden bg-background">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <PictureImage
+            src={heroBgPng}
+            srcSetEntries={heroBgSrcSet}
+            alt=""
+            aria-hidden="true"
+            width={1024}
+            height={1024}
+            sizes="100vw"
+            priority={true}
+            containerClassName="w-full h-full"
+            className="w-full h-full object-cover object-center opacity-55"
+          />
+        </div>
+        {/* Left-to-right gradient: opaque background on left keeps text readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
+        {/* Bottom fade: blends hero seamlessly into the cards section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        {/* Subtle brand warmth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.10),transparent_55%)]" />
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-              <Link href="/" className="hover:text-primary transition-colors">首頁</Link>
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-foreground font-medium">門市資訊</span>
-            </div>
-            <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
-              全台及海外
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-              全台及海外服務據點
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              歡迎蒞臨體驗最純淨的草本護髮，我們在台北、嘉義與新加坡等地恭候您的光臨。
-            </p>
-          </motion.div>
+          <div className="pb-12">
+
+            {/* Left — copy + stats */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <nav aria-label="頁面路徑" className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                <Link href="/" className="hover:text-primary transition-colors">首頁</Link>
+                <ChevronRight className="w-4 h-4" />
+                <span className="text-foreground font-medium">門市資訊</span>
+              </nav>
+
+              <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
+                全台及海外
+              </Badge>
+
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 leading-tight">
+                全台及海外服務據點
+              </h1>
+
+              <p className="text-muted-foreground text-base md:text-lg mb-8 leading-relaxed">
+                歡迎蒞臨體驗最純淨的草本護髮，我們在台北、嘉義與新加坡等地恭候您的光臨。
+              </p>
+
+            </motion.div>
+
+          </div>
+
+          {/* Divider line fading into the section below */}
+          <div className="border-t border-border/30" />
         </div>
       </section>
 
@@ -231,6 +263,53 @@ export default function LocationsPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Contact Methods */}
+      <section className="pt-8 pb-16 bg-background">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-2 text-center">
+            聯絡我們
+          </h2>
+          <p className="text-muted-foreground text-center mb-8">立即預約您的草本體驗</p>
+          <motion.div
+            className="grid sm:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <a
+              href="https://lin.ee/NxoDqq0"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="透過LINE預約沐璿草本護髮"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              <MessageCircle className="w-6 h-6" />
+              <span className="text-xl font-bold">LINE 加好友</span>
+              <span className="text-sm text-white/80">最快速的預約方式</span>
+            </a>
+
+            <a
+              href="https://www.facebook.com/muherbal"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="前往沐璿草本護髮Facebook粉絲頁"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl border border-primary/20 text-primary bg-background shadow-lg transition-all duration-200 hover:bg-gradient-to-br hover:from-[#1877F2] hover:to-[#4267B2] hover:text-white hover:border-transparent hover:shadow-xl hover:-translate-y-0.5 active:from-[#1565C0] active:to-[#365899]"
+            >
+              <Facebook className="w-6 h-6" />
+              <span className="text-xl font-bold">Facebook</span>
+              <span className="text-sm text-muted-foreground">追蹤最新消息</span>
+            </a>
+
+            <div className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-primary text-white shadow-lg">
+              <Phone className="w-6 h-6" />
+              <span className="text-xl font-bold">電話預約</span>
+              <span className="text-sm text-white/80">請依分店直撥</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 

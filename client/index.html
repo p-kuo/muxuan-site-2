@@ -2,12 +2,13 @@
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>沐璿草本護髮 | 天然・安全・有效</title>
     <meta name="description" content="沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，專業改善白髮、落髮、頭皮屑、產後落髮、染燙受損等問題。台北、嘉義（兩店）、新加坡服務。" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="author" content="沐璿草本護髮中心" />
+    <meta name="theme-color" content="#4a7c59" />
     <link rel="canonical" href="https://muxuantw.com" />
 
     <meta property="og:site_name" content="沐璿草本護髮中心" />
@@ -17,6 +18,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_TW" />
     <meta property="og:image" content="https://replit.com/public/images/opengraph.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="沐璿草本護髮中心 — 天然草本護髮・頭皮SPA" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="沐璿草本護髮中心｜天然草本護髮・頭皮SPA" />
@@ -24,6 +28,8 @@
     <meta name="twitter:image" content="https://replit.com/public/images/opengraph.png" />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,105 +40,181 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "沐璿草本護髮中心",
-      "alternateName": "Mu Xuan Herbal Hair Care",
-      "description": "沐璿草本護髮中心提供天然、安全、有效的草本護髮方案，從根本改善頭皮問題，恢復髮絲健康與活力。專為白髮、落髮、敏感頭皮、產後落髮、染燙受損等問題提供草本護理服務。",
-      "url": "https://muxuantw.com",
-      "foundingDate": "2009",
-      "founder": {
-        "@type": "Person",
-        "name": "葉玉女"
-      },
-      "makesOffer": [
+      "@graph": [
         {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "深層頭皮淨化配方",
-            "description": "針對頭皮屑、油脂過剩與毛囊堵塞問題。使用珍貴草本精華，溫和去除老廢角質，平衡頭皮油脂分泌。"
-          }
+          "@type": "Organization",
+          "@id": "https://muxuantw.com/#organization",
+          "name": "沐璿草本護髮中心",
+          "alternateName": "Mu Xuan Herbal Hair Care",
+          "url": "https://muxuantw.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://muxuantw.com/favicon.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://muxuantw.com/opengraph.jpg",
+          "foundingDate": "2009",
+          "founder": {
+            "@type": "Person",
+            "name": "葉玉女",
+            "jobTitle": "創辦人"
+          },
+          "description": "沐璿草本護髮中心採用中醫師調製草本配方，嚴選當歸、人蔘、何首烏等天然中藥材，從根本改善頭皮問題，恢復髮絲健康與活力。",
+          "areaServed": [
+            { "@type": "Country", "name": "台灣" },
+            { "@type": "Country", "name": "新加坡" }
+          ],
+          "knowsAbout": [
+            "草本護髮", "天然染髮", "頭皮護理", "落髮調理", "白髮遮蓋",
+            "產後護髮", "敏感頭皮護理", "中醫草本配方", "毛囊養護"
+          ],
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "深層頭皮淨化配方",
+                "description": "針對頭皮屑、油脂過剩與毛囊堵塞問題。使用珍貴草本精華，溫和去除老廢角質，平衡頭皮油脂分泌。",
+                "provider": { "@id": "https://muxuantw.com/#organization" }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "髮根強健滋養配方",
+                "description": "專為落髮、稀疏髮質設計。富含人參、何首烏等滋養成分，深入毛囊提供營養，強健髮根。",
+                "provider": { "@id": "https://muxuantw.com/#organization" }
+              }
+            }
+          ]
         },
         {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "髮根強健滋養配方",
-            "description": "專為落髮、稀疏髮質設計。富含人參、何首烏等滋養成分，深入毛囊提供營養，強健髮根。"
-          }
-        }
-      ],
-      "location": [
+          "@type": "WebSite",
+          "@id": "https://muxuantw.com/#website",
+          "name": "沐璿草本護髮",
+          "alternateName": "MuHerb",
+          "url": "https://muxuantw.com",
+          "description": "天然・安全・有效的草本頭皮護理，台北、嘉義、新加坡四店服務。",
+          "inLanguage": "zh-TW",
+          "publisher": { "@id": "https://muxuantw.com/#organization" }
+        },
         {
-          "@type": "Place",
-          "name": "沐璿草本護髮中心 台北店",
+          "@type": "BeautySalon",
+          "@id": "https://muxuantw.com/locations/#taipei",
+          "name": "沐璿草本護髮中心(台北店)",
+          "parentOrganization": { "@id": "https://muxuantw.com/#organization" },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "忠孝東路一段108號",
             "addressLocality": "台北市",
+            "addressRegion": "台北市",
             "addressCountry": "TW"
           },
-          "telephone": "02-23967893",
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "18:00"
-          }
+          "telephone": "+886-2-23967893",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "priceRange": "$$",
+          "currenciesAccepted": "TWD",
+          "paymentAccepted": "Cash, Credit Card",
+          "image": "https://muxuantw.com/opengraph.jpg",
+          "url": "https://muxuantw.com/locations",
+          "hasMap": "https://maps.app.goo.gl/kiGMjQ2J4wPozSEHA",
+          "description": "沐璿草本護髮台北店，位於忠孝東路一段108號（華山市場2樓）。"
         },
         {
-          "@type": "Place",
-          "name": "沐璿草本護髮中心 嘉義店",
+          "@type": "BeautySalon",
+          "@id": "https://muxuantw.com/locations/#chiayi-city",
+          "name": "沐璿草本護髮中心(嘉義市店)",
+          "parentOrganization": { "@id": "https://muxuantw.com/#organization" },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "吳鳳南路15-1號",
             "addressLocality": "嘉義市",
+            "addressRegion": "嘉義市",
             "addressCountry": "TW"
           },
-          "telephone": "05-2222166",
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "18:00"
-          }
+          "telephone": "+886-5-2222166",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "priceRange": "$$",
+          "currenciesAccepted": "TWD",
+          "paymentAccepted": "Cash, Credit Card",
+          "image": "https://muxuantw.com/opengraph.jpg",
+          "url": "https://muxuantw.com/locations",
+          "description": "沐璿草本護髮嘉義市店，位於吳鳳南路15-1號（垂楊路摩斯漢堡附近）。"
         },
         {
-          "@type": "Place",
-          "name": "沐璿草本護髮中心 新加坡店",
+          "@type": "BeautySalon",
+          "@id": "https://muxuantw.com/locations/#chiayi-county",
+          "name": "沐璿草本護髮中心(嘉義縣府店)",
+          "parentOrganization": { "@id": "https://muxuantw.com/#organization" },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "祥和一路東段78號",
+            "addressLocality": "嘉義縣",
+            "addressRegion": "嘉義縣",
+            "addressCountry": "TW"
+          },
+          "telephone": "+886-5-3628586",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "priceRange": "$$",
+          "currenciesAccepted": "TWD",
+          "paymentAccepted": "Cash, Credit Card",
+          "image": "https://muxuantw.com/opengraph.jpg",
+          "url": "https://muxuantw.com/locations",
+          "description": "沐璿草本護髮嘉義縣府店，位於祥和一路東段78號。"
+        },
+        {
+          "@type": "BeautySalon",
+          "@id": "https://muxuantw.com/locations/#singapore",
+          "name": "沐璿草本護髮中心(新加坡店)",
+          "parentOrganization": { "@id": "https://muxuantw.com/#organization" },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "BLK 530 Bedok North Street 3, #01-646",
+            "addressLocality": "Bedok",
+            "addressRegion": "Singapore",
             "addressCountry": "SG"
           },
-          "telephone": "+65 6538 9589",
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "18:00"
-          }
+          "telephone": "+65-6538-9589",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "priceRange": "$$",
+          "currenciesAccepted": "SGD",
+          "paymentAccepted": "Cash, Credit Card",
+          "image": "https://muxuantw.com/opengraph.jpg",
+          "url": "https://muxuantw.com/locations",
+          "hasMap": "https://maps.app.goo.gl/twR7wuCQXdkb6vDg7",
+          "description": "沐璿草本護髮新加坡店，位於Bedok North Street 3 BLK 530 #01-646。"
         }
-      ],
-      "areaServed": ["台灣", "新加坡"],
-      "knowsAbout": ["草本護髮", "天然染髮", "頭皮護理", "落髮治療", "白髮遮蓋", "產後護髮", "敏感頭皮護理"]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "沐璿草本護髮",
-      "alternateName": "MuHerb",
-      "url": "https://muxuantw.com",
-      "description": "天然・安全・有效的草本頭皮護理，台北、嘉義、新加坡三店服務。",
-      "inLanguage": "zh-TW",
-      "publisher": {
-        "@type": "Organization",
-        "name": "沐璿草本護髮",
-        "alternateName": "MuHerb"
-      }
+      ]
     }
     </script>
   </head>

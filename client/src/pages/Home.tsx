@@ -1,10 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import TreatmentFlow from "@/components/TreatmentFlow";
 import Audience from "@/components/Audience";
 import Story from "@/components/Story";
-import Locations from "@/components/Locations";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 
@@ -15,10 +13,8 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
-        <TreatmentFlow />
         <Audience />
         <Story />
-        <Locations />
         <FAQ />
         <Contact />
       </main>

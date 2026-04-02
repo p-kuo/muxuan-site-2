@@ -38,7 +38,7 @@ export default function Contact() {
             </Button>
             <Button 
               variant="outline" 
-              className="h-auto py-6 flex flex-col items-center gap-2 text-lg border-primary/20 text-primary"
+              className="h-auto py-6 flex flex-col items-center gap-2 text-lg border-primary/20 text-primary transition-all duration-200 hover:bg-gradient-to-br hover:from-[#1877F2] hover:to-[#4267B2] hover:text-white hover:border-transparent active:from-[#1565C0] active:to-[#365899]"
               onClick={() => window.open('https://www.facebook.com/muherbal', '_blank')}
             >
               <Facebook className="w-6 h-6" />

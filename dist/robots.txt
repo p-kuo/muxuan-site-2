@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muxuantw.com/sitemap.xml
