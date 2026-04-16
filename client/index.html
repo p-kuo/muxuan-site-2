@@ -44,6 +44,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://lin.ee">
+    <link rel="dns-prefetch" href="https://lin.ee">
+    <link rel="dns-prefetch" href="https://line.me">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
@@ -341,7 +346,37 @@
 
 </div>
 
-    <div id="root"></div>
+    <div id="root">
+      <!-- Skeleton shown until React hydrates -->
+      <div id="app-skeleton" style="font-family:'PingFang TC','Microsoft JhengHei',sans-serif;">
+        <!-- Navbar skeleton -->
+        <div style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 24px;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:#e8f0ea;"></div>
+          <div style="width:80px;height:16px;border-radius:4px;background:#e8f0ea;"></div>
+          <div style="flex:1;"></div>
+          <div style="width:200px;height:14px;border-radius:4px;background:#e8f0ea;display:none;" class="sk-nav-links"></div>
+        </div>
+        <!-- Hero skeleton -->
+        <div style="min-height:100vh;background:linear-gradient(135deg,#2d5a3d 0%,#4a7c59 50%,#6b9e7a 100%);display:flex;align-items:center;justify-content:center;padding-top:64px;">
+          <div style="text-align:center;padding:24px;">
+            <div style="width:120px;height:16px;border-radius:20px;background:rgba(255,255,255,0.3);margin:0 auto 24px;"></div>
+            <div style="width:320px;height:48px;border-radius:8px;background:rgba(255,255,255,0.2);margin:0 auto 16px;"></div>
+            <div style="width:260px;height:48px;border-radius:8px;background:rgba(255,255,255,0.2);margin:0 auto 24px;"></div>
+            <div style="width:280px;height:20px;border-radius:4px;background:rgba(255,255,255,0.15);margin:0 auto 12px;"></div>
+            <div style="width:220px;height:20px;border-radius:4px;background:rgba(255,255,255,0.15);margin:0 auto 40px;"></div>
+            <div style="display:flex;gap:16px;justify-content:center;">
+              <div style="width:120px;height:48px;border-radius:8px;background:rgba(255,255,255,0.25);"></div>
+              <div style="width:140px;height:48px;border-radius:8px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      #app-skeleton { animation: sk-pulse 1.5s ease-in-out infinite; }
+      @keyframes sk-pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+      #root:not(:empty) #app-skeleton { display:none; }
+    </style>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
