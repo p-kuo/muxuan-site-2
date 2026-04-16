@@ -293,7 +293,7 @@ export const articles: Article[] = [
     metaDescription:
       "護髮素抹頭皮真的沒問題嗎？本文以 Q&A 解析矽靈堆積、毛囊堵塞與頭皮出油惡性循環的成因，並教你正確使用護髮素的步驟，適合油性頭皮、落髮族群必讀。",
     coverAlt: "護髮素正確塗抹於髮中髮尾示範，避免直接接觸頭皮導致毛孔阻塞與頭皮出油加重 — 沐璿草本護髮中心",
-    coverImage: "/blog/conditioner-scalp-mistakes.png",
+    coverImage: "/blog/conditioner-scalp-mistakes.webp",
     content: [
       {
         type: "p",
