@@ -38,8 +38,8 @@
   --color-input: hsl(130 15% 90%);
   --color-ring: hsl(130 35% 35%);
   
-  --font-sans: 'Noto Sans TC', sans-serif;
-  --font-serif: 'Noto Serif TC', serif;
+  --font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'PingFang TC', 'Microsoft JhengHei', serif;
   
   --radius: 0.5rem;
 }
