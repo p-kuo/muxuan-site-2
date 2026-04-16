@@ -9,11 +9,11 @@ import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
 
-import singaporeImg from "@assets/Singapore.png";
-import shopImg from "@assets/shop.png";
-import shopJpegImg from "@assets/generated_images/shop.jpeg";
-import shop1Img from "@assets/generated_images/shop1.jpeg";
-import image123 from "@assets/123.png";
+import singaporeImg from "@assets/Singapore.webp";
+import shopImg from "@assets/shop.webp";
+import shopJpegImg from "@assets/generated_images/shop.webp";
+import shop1Img from "@assets/generated_images/shop1.webp";
+import image123 from "@assets/123.webp";
 import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
 import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
 import heroBg640w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-640w.webp";
@@ -30,7 +30,7 @@ import story640wAvif from "@assets/generated_images/symbolic_herbal_journey_imag
 import story1024wAvif from "@assets/generated_images/symbolic_herbal_journey_image_with_healthy_plant_growing_from_traditional_herbs-1024w.avif";
 import herbsImg from "@assets/generated_images/traditional_chinese_herbs_composition_including_ginseng_and_angelica.png";
 import naturalHerbsImg from "@assets/generated_images/close_up_of_natural_herbs_and_botanical_ingredients.png";
-import taipeiImg from "@assets/generated_images/taipei.jpg";
+import taipeiImg from "@assets/generated_images/taipei.webp";
 
 const heroBgSrcSet = [
   { width: 320, webpSrc: heroBg320w, avifSrc: heroBg320wAvif },
