@@ -38,6 +38,15 @@ const locations = [
     mapUrl: "https://www.google.com/maps/search/?api=1&query=嘉義市吳鳳南路15-1號"
   },
   {
+    city: "嘉義縣府店",
+    address: "嘉義縣祥和一路東段78號",
+    phone: "05-3628586",
+    hours: "早上9:00 - 下午6:00",
+    closed: "星期日、星期一",
+    directions: [],
+    mapUrl: "https://www.google.com/maps/place/%E6%B2%90%E7%92%BF%E8%8D%89%E6%9C%AC%E8%AD%B7%E9%AB%AE%E4%B8%AD%E5%BF%83~%E5%98%89%E7%BE%A9%E7%B8%A3%E5%BA%9C%E5%BA%97/@23.4581828,119.0785232,9z/data=!4m10!1m2!2m1!1z5rKQ55K_6I2J5pys6K236auu5Lit5b-D!3m6!1s0x346e9a34b0ebf949:0xa407e3774983da79!8m2!3d23.4581828!4d120.2980056!15sChjmspDnkr_ojYnmnKzorbfpq67kuK3lv4MiA4gBAVofIh3mspAg55K_IOiNieacrCDorbcg6auuIOS4reW_g5IBDGJlYXV0eV9zYWxvbpoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VSSmNFb3RjblYzUlJBQuABAPoBBAgAEAw!16s%2Fg%2F11f313w21f?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
     city: "新加坡店",
     address: "BLK 530 Bedok North Street 3, #01-646",
     phone: "+65 6538 9589",
