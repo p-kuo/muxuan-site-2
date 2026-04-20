@@ -235,3 +235,30 @@ for (const article of articles) {
 }
 
 console.log(`\n🎉  Prerendered ${count} blog routes.`);
+
+// ─── Static shell pages for all main SPA routes ──────────────────────────────
+// Vite's `emptyOutDir: true` wipes dist/ on every build, so these files must
+// be re-created here (after the Vite build) rather than committed to git.
+// Having a real file at dist/about/index.html means Vercel serves it directly
+// instead of relying on catch-all rewrites, which avoids any routing edge cases.
+
+const shellRoutes = [
+  "about",
+  "cases",
+  "services",
+  "contact",
+  "locations",
+  "faq",
+  "blog",
+];
+
+let shellCount = 0;
+for (const route of shellRoutes) {
+  const outDir = path.join(distDir, route);
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, "index.html"), baseHtml, "utf-8");
+  console.log(`✅  dist/${route}/index.html`);
+  shellCount++;
+}
+
+console.log(`\n🎉  Wrote ${shellCount} static shell pages for SPA routes.`);
