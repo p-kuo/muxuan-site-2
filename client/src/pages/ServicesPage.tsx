@@ -138,7 +138,7 @@ const conditions = [
   {
     id: "dye-damage",
     title: "染燙後受損",
-    brief: "天然植萃配方溫和不刺激，為受損頭皮給予修護養護體驗。",
+    brief: "天然植萃配方溫和不刺激，為受損髪質給予修復養護體驗。",
     icon: <Flame className="w-5 h-5" />,
     tags: ["染燙修護", "溫和配方", "敏感養護"],
     disclaimer: undefined,
