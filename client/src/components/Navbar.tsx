@@ -240,7 +240,15 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Nav */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <Link href="/contact">
+            <Button
+              size="sm"
+              className="text-xs font-semibold px-3 h-8 rounded-full bg-primary text-white hover:bg-primary/90"
+            >
+              立即預約
+            </Button>
+          </Link>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="開啟導覽選單">
