@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
+import { useLineModal } from "@/components/LineModal";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -84,6 +85,7 @@ const faqJsonLd = {
 };
 
 export default function FaqPage() {
+  const { openLineModal } = useLineModal();
   useSeo({
     title: "草本護髮常見問題 | 沐璿草本護髮中心",
     description: "關於沐璿草本護髮的常見問題：療程是否有效、能否改善落髮、草本與化學染髮的差異，以及費用與護理頻率說明。",
@@ -194,18 +196,11 @@ export default function FaqPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                asChild
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+                onClick={openLineModal}
               >
-                <a
-                  href="https://lin.ee/NxoDqq0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="透過LINE聯絡沐璿草本護髮"
-                >
-                  LINE 諮詢
-                </a>
+                LINE 諮詢
               </Button>
               <Button
                 asChild

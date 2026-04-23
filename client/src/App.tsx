@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LineModalProvider } from "@/components/LineModal";
 
 const Home = lazy(() => import("@/pages/Home"));
 const ServicesPage = lazy(() => import("@/pages/ServicesPage"));
@@ -39,8 +40,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <LineModalProvider>
+          <Toaster />
+          <Router />
+        </LineModalProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

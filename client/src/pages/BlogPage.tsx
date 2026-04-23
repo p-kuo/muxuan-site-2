@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
+import { useLineModal } from "@/components/LineModal";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -82,6 +83,7 @@ const blogJsonLd = {
 };
 
 export default function BlogPage() {
+  const { openLineModal } = useLineModal();
   useSeo({
     title: "護髮部落格 | 沐璿草本護髮中心",
     description: "沐璿草本護髮部落格：深度解析頭皮出油、草本染髮、產後落髮、護髮素使用誤區、熱造型傷髮等頭皮知識，幫助您從根本了解頭皮健康。",
@@ -245,18 +247,11 @@ export default function BlogPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                asChild
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+                onClick={openLineModal}
               >
-                <a
-                  href="https://lin.ee/NxoDqq0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="透過LINE預約沐璿草本護髮服務"
-                >
-                  LINE 立即諮詢
-                </a>
+                LINE 立即諮詢
               </Button>
               <Button
                 asChild

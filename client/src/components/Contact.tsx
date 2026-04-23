@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, HelpCircle, Facebook } from "lucide-react";
+import { useLineModal } from "@/components/LineModal";
 
 export default function Contact() {
+  const { openLineModal } = useLineModal();
+
   const handleBookingClick = () => {
     const locationsSection = document.getElementById('locations');
     if (locationsSection) {
@@ -31,7 +34,7 @@ export default function Contact() {
             </Button>
             <Button 
               className="h-auto py-6 flex flex-col items-center gap-2 bg-[#00B900] hover:bg-[#00B900]/90 text-white text-lg"
-              onClick={() => window.open('https://lin.ee/NxoDqq0', '_blank')}
+              onClick={openLineModal}
             >
               <MessageCircle className="w-6 h-6" />
               <span>LINE 加好友</span>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useLineModal } from "@/components/LineModal";
 import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -294,6 +295,7 @@ const casesJsonLd = {
 };
 
 export default function CasesPage() {
+  const { openLineModal } = useLineModal();
   const [activeTag, setActiveTag] = useState(ALL_TAG);
 
   useSeo({
@@ -520,18 +522,11 @@ export default function CasesPage() {
               每個頭皮問題都有專屬的草本解方，立即諮詢讓我們為您量身規劃。
             </p>
             <Button
-              asChild
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+              onClick={openLineModal}
             >
-              <a
-                href="https://lin.ee/NxoDqq0"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="透過LINE預約沐璿草本護髮服務"
-              >
-                立即預約
-              </a>
+              立即預約
             </Button>
           </motion.div>
         </div>

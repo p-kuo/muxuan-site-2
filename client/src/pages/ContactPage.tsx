@@ -8,6 +8,7 @@ import { Phone, MessageCircle, Facebook, MapPin, ChevronRight, Clock } from "luc
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
+import { useLineModal } from "@/components/LineModal";
 
 import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
 import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
@@ -78,6 +79,7 @@ const contactJsonLd = {
 };
 
 export default function ContactPage() {
+  const { openLineModal } = useLineModal();
   useSeo({
     title: "聯絡我們 | 沐璿草本護髮中心",
     description: "透過LINE或電話聯絡沐璿草本護髮中心，預約頭皮護理諮詢。台北（兩店）、嘉義（市區店與縣府店）、新加坡共五處門市歡迎您。",
@@ -232,17 +234,15 @@ export default function ContactPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <a
-              href="https://lin.ee/NxoDqq0"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openLineModal}
               title="透過LINE預約沐璿草本護髮"
-              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageCircle className="w-6 h-6" />
               <span className="text-xl font-bold">LINE 加好友</span>
               <span className="text-sm text-white/80">最快速的預約方式</span>
-            </a>
+            </button>
 
             <a
               href="https://www.facebook.com/muherbal"
@@ -283,18 +283,11 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                asChild
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+                onClick={openLineModal}
               >
-                <a
-                  href="https://lin.ee/NxoDqq0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="透過LINE預約沐璿草本護髮服務"
-                >
                   立即預約
-                </a>
               </Button>
               <Button
                 asChild

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, useParams } from "wouter";
+import { useLineModal } from "@/components/LineModal";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -116,6 +117,7 @@ function renderSections(content: ArticleSection[]) {
 }
 
 export default function BlogPostPage() {
+  const { openLineModal } = useLineModal();
   const params = useParams<{ slug: string }>();
   const article = getArticleBySlug(params.slug ?? "");
 
@@ -467,18 +469,11 @@ export default function BlogPostPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                asChild
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+                onClick={openLineModal}
               >
-                <a
-                  href="https://lin.ee/NxoDqq0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="透過LINE預約沐璿草本護髮服務"
-                >
-                  LINE 立即預約
-                </a>
+                LINE 立即預約
               </Button>
               <Button
                 asChild

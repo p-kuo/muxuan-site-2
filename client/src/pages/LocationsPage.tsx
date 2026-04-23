@@ -9,6 +9,7 @@ import { MapPin, Phone, Clock, CalendarX, Navigation, ChevronRight, MessageCircl
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
+import { useLineModal } from "@/components/LineModal";
 
 import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
 import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
@@ -110,6 +111,7 @@ const ALL_TAG = "全部";
 const tags = [ALL_TAG, "台北", "嘉義", "新加坡"];
 
 export default function LocationsPage() {
+  const { openLineModal } = useLineModal();
   const [activeTag, setActiveTag] = useState(ALL_TAG);
 
   useSeo({
@@ -342,17 +344,15 @@ export default function LocationsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <a
-              href="https://lin.ee/NxoDqq0"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openLineModal}
               title="透過LINE預約沐璿草本護髮"
-              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5"
+              className="flex flex-col items-center gap-2 py-8 px-6 rounded-2xl bg-[#00B900] hover:bg-[#00B900]/90 text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
             >
               <MessageCircle className="w-6 h-6" />
               <span className="text-xl font-bold">LINE 加好友</span>
               <span className="text-sm text-white/80">最快速的預約方式</span>
-            </a>
+            </button>
 
             <a
               href="https://www.facebook.com/muherbal"
@@ -392,13 +392,11 @@ export default function LocationsPage() {
               致電或到店諮詢，讓我們的專業護理師為您量身設計草本護髮方案。
             </p>
             <Button
-              asChild
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+              onClick={openLineModal}
             >
-              <a href="https://lin.ee/NxoDqq0" target="_blank" rel="noopener noreferrer">
-                立即預約
-              </a>
+              立即預約
             </Button>
           </motion.div>
         </div>

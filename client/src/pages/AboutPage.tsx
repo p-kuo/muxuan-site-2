@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLineModal } from "@/components/LineModal";
 import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -146,6 +147,7 @@ const aboutJsonLd = {
 };
 
 export default function AboutPage() {
+  const { openLineModal } = useLineModal();
   useSeo({
     title: "品牌故事 | 沐璿草本護髮中心",
     description: "了解沐璿草本護髮中心的品牌故事——從2009年創辦人葉玉女在新加坡的啟程，到台北、嘉義多家門市的草本護髮事業，15年天然護髮專業。",
@@ -540,18 +542,11 @@ export default function AboutPage() {
               和葉玉女創辦人一樣，讓草本配方從根本改善您的頭皮健康。
             </p>
             <Button
-              asChild
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+              onClick={openLineModal}
             >
-              <a
-                href="https://lin.ee/NxoDqq0"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="透過LINE預約沐璿草本護髮服務"
-              >
-                立即預約
-              </a>
+              立即預約
             </Button>
           </motion.div>
         </div>

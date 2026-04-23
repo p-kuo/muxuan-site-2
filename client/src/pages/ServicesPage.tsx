@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "wouter";
+import { useLineModal } from "@/components/LineModal";
 import { useSeo } from "@/hooks/use-seo";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -235,6 +236,7 @@ const servicesJsonLd = {
 };
 
 export default function ServicesPage() {
+  const { openLineModal } = useLineModal();
   const [location] = useLocation();
   const [activeFormula, setActiveFormula] = useState(0);
   const [activeCondition, setActiveCondition] = useState<string | null>(null);
@@ -628,13 +630,11 @@ export default function ServicesPage() {
               立即預約，讓專業護理師為您量身打造最適合的頭皮護理方案。
             </p>
             <Button
-              asChild
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-bold text-lg h-12 px-10"
+              onClick={openLineModal}
             >
-              <a href="https://lin.ee/NxoDqq0" target="_blank" rel="noopener noreferrer">
-                立即預約
-              </a>
+              立即預約
             </Button>
           </motion.div>
         </div>
