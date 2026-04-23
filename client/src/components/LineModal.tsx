@@ -34,15 +34,13 @@ const LINE_TILES = [
   {
     id: "chiayi",
     name: "沐璿嘉義",
-    subtitle: "嘉義市店・嘉義縣府店",
-    qrSrc: "/assets/line-qr-chiayi.png",
+    qrSrc: "/assets/line-qr-chiayi.webp",
     url: "https://lin.ee/NxoDqq0",
   },
   {
     id: "taipei",
     name: "沐璿台北",
-    subtitle: "華山店・林森店",
-    qrSrc: "/assets/line-qr-taipei.png",
+    qrSrc: "/assets/line-qr-taipei.webp",
     url: "", // To be added later
   },
 ] as const;
@@ -116,17 +114,26 @@ function QrImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-// ─── LINE logo SVG ───────────────────────────────────────────────────────────
+// ─── Official LINE icon SVG ──────────────────────────────────────────────────
+// Matches the LINE brand: green rounded-square + white speech-bubble
 
 function LineIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
-      <rect width="48" height="48" rx="12" fill="#00B900" />
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
+      <rect width="100" height="100" rx="22" fill="#06C755" />
+      {/* Speech bubble body */}
       <path
-        d="M39 22.3C39 15.5 32.3 10 24 10S9 15.5 9 22.3c0 6.1 5.4 11.2 12.7 12.2.5.1 1.2.3 1.3.8.2.4.1 1.1 0 1.5l-.2 1.3c-.1.4-.4 1.7 1.5.9s10-5.9 13.6-10.1c2.5-2.7 3.7-5.5 3.7-6.6h-.6z"
+        d="M50 18C32.3 18 18 30.1 18 45c0 9.5 5.8 17.8 14.6 22.8-.4 1.5-2.5 9.3-2.8 10.5-.4 1.5.6 1.5 1.2 1.1 0.5-.3 12.9-8.5 18.1-11.9 1.6.2 3.2.3 4.9.3 17.7 0 32-12.1 32-27C82 30.1 67.7 18 50 18z"
         fill="white"
       />
-      <path d="M20.5 19.5H19v5h1.5v-5zM29 19.5h-1.5v2.8L25.3 19.5H24v5h1.5v-2.8l2.2 2.8H29v-5zM22.5 23v-3.5H21v5h3.5V23h-2z" fill="#00B900" />
+      {/* L */}
+      <path d="M34 37.5h3.5v11.5h6.5V52H34z" fill="#06C755" />
+      {/* I */}
+      <path d="M46.5 37.5H50V52h-3.5z" fill="#06C755" />
+      {/* N */}
+      <path d="M53 37.5h3.3l5.2 9V37.5H65V52h-3.2l-5.3-9V52H53z" fill="#06C755" />
+      {/* E */}
+      <path d="M68 37.5h9.5V41H71.5v3h5.5v3.2h-5.5v1.6h6V52H68z" fill="#06C755" />
     </svg>
   );
 }
@@ -206,8 +213,7 @@ function LineModalContent({ onClose }: { onClose: () => void }) {
                   <QrImage src={tile.qrSrc} alt={`${tile.name} LINE QR碼`} />
                 </div>
 
-                <p className="font-bold text-foreground text-sm leading-tight">{tile.name}</p>
-                <p className="text-xs text-muted-foreground mb-3 mt-0.5">{tile.subtitle}</p>
+                <p className="font-bold text-foreground text-sm leading-tight mb-3">{tile.name}</p>
 
                 {tile.url ? (
                   <a
