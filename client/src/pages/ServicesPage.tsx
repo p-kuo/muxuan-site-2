@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
+import CertificateSection from "@/components/CertificateSection";
 
 import heroBgPng from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere.png";
 import heroBg320w from "@assets/generated_images/herbal_hair_treatment_hero_background_with_green_leaves_and_calm_atmosphere-320w.webp";
@@ -314,6 +315,9 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── 成分安全認證 ─────────────────────────────────────────────── */}
+      <CertificateSection />
 
       {/* ── 兩大草本配方 ─────────────────────────────────────────────── */}
       <section className="py-20 md:py-28 bg-background relative overflow-hidden">
