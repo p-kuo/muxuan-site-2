@@ -105,20 +105,12 @@ function QrImage({ src, alt }: { src: string; alt: string }) {
   const [failed, setFailed] = useState(false);
   if (failed) return <QrPlaceholder />;
   return (
-    <div className="relative w-full h-full">
-      <img
-        src={src}
-        alt={alt}
-        onError={() => setFailed(true)}
-        className="w-full h-full object-contain"
-      />
-      {/* LINE logo centred over the QR code */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
-          <LineIcon className="w-8 h-8" />
-        </div>
-      </div>
-    </div>
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setFailed(true)}
+      className="w-full h-full object-contain"
+    />
   );
 }
 
