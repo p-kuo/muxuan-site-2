@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSeo } from "@/hooks/use-seo";
 import { Link } from "wouter";
 import { useLineModal } from "@/components/LineModal";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Clock, CalendarDays, ArrowRight } from "lucide-react";
+import { ChevronRight, Clock, CalendarDays, ArrowRight, ChevronDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
@@ -82,8 +82,16 @@ const blogJsonLd = {
   ],
 };
 
+// Sort newest-first
+const sortedArticles = [...articles].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const INITIAL_COUNT = 6;
+
 export default function BlogPage() {
   const { openLineModal } = useLineModal();
+  const [showAll, setShowAll] = useState(false);
   useSeo({
     title: "護髮部落格 | 沐璿草本護髮中心",
     description: "沐璿草本護髮部落格：深度解析頭皮出油、草本染髮、產後落髮、護髮素使用誤區、熱造型傷髮等頭皮知識，幫助您從根本了解頭皮健康。",
@@ -165,66 +173,93 @@ export default function BlogPage() {
       {/* Article Grid */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, index) => (
-              <motion.article
-                key={article.slug}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-2xl border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden"
-              >
-                <Link
-                  href={`/blog/${article.slug}`}
-                  title={article.title}
-                  className="flex flex-col flex-1"
-                >
-                  {/* Card colour bar */}
-                  <div className="h-1.5 bg-primary w-full" />
-
-                  <div className="p-6 flex flex-col flex-1 gap-4">
-                    {/* Category + meta */}
-                    <div className="flex items-center justify-between flex-wrap gap-2">
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
-                          categoryColors[article.category] ??
-                          "bg-primary/5 text-primary border-primary/20"
-                        }`}
+          {/* Card grid */}
+          <div className="relative">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sortedArticles.map((article, index) => {
+                const isHidden = !showAll && index >= INITIAL_COUNT;
+                return (
+                  <AnimatePresence key={article.slug}>
+                    {!isHidden && (
+                      <motion.article
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 12 }}
+                        transition={{ duration: 0.45, delay: showAll ? 0 : index * 0.08 }}
+                        className="group bg-white rounded-2xl border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden"
                       >
-                        {article.category}
-                      </span>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <CalendarDays className="w-3.5 h-3.5" />
-                          {formatDate(article.date)}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
-                          {article.readingTime} 分鐘
-                        </span>
-                      </div>
-                    </div>
+                        <Link
+                          href={`/blog/${article.slug}`}
+                          title={article.title}
+                          className="flex flex-col flex-1"
+                        >
+                          {/* Card colour bar */}
+                          <div className="h-1.5 bg-primary w-full" />
 
-                    {/* Title */}
-                    <h2 className="text-xl font-serif font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
-                      {article.title}
-                    </h2>
+                          <div className="p-6 flex flex-col flex-1 gap-4">
+                            {/* Category + meta */}
+                            <div className="flex items-center justify-between flex-wrap gap-2">
+                              <span
+                                className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
+                                  categoryColors[article.category] ??
+                                  "bg-primary/5 text-primary border-primary/20"
+                                }`}
+                              >
+                                {article.category}
+                              </span>
+                              <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                                <span className="flex items-center gap-1">
+                                  <CalendarDays className="w-3.5 h-3.5" />
+                                  {formatDate(article.date)}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <Clock className="w-3.5 h-3.5" />
+                                  {article.readingTime} 分鐘
+                                </span>
+                              </div>
+                            </div>
 
-                    {/* Excerpt */}
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">
-                      {article.excerpt}
-                    </p>
+                            {/* Title */}
+                            <h2 className="text-xl font-serif font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                              {article.title}
+                            </h2>
 
-                    {/* Read more */}
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-200 mt-auto">
-                      閱讀全文
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
+                            {/* Excerpt */}
+                            <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+                              {article.excerpt}
+                            </p>
+
+                            {/* Read more */}
+                            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-200 mt-auto">
+                              閱讀全文
+                              <ArrowRight className="w-4 h-4" />
+                            </span>
+                          </div>
+                        </Link>
+                      </motion.article>
+                    )}
+                  </AnimatePresence>
+                );
+              })}
+            </div>
+
+            {/* Gradient + expand button — only when collapsed and more posts exist */}
+            {!showAll && sortedArticles.length > INITIAL_COUNT && (
+              <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center">
+                {/* Fade gradient */}
+                <div className="w-full h-40 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+                {/* Button sits inside the gradient */}
+                <div className="-mt-10 relative z-10 pb-2">
+                  <button
+                    onClick={() => setShowAll(true)}
+                    className="inline-flex items-center gap-2 bg-white border border-border/60 shadow-md hover:shadow-lg text-foreground font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-200 hover:border-primary/40 hover:text-primary"
+                  >
+                    更多文章
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
