@@ -219,20 +219,14 @@ function LineModalContent({ onClose }: { onClose: () => void }) {
 
                 <p className="font-bold text-foreground text-sm leading-tight mb-3">{tile.name}</p>
 
-                {tile.url ? (
-                  <a
-                    href={tile.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-[#00B900] hover:bg-[#00B900]/85 text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
-                  >
-                    掃我加好友
-                  </a>
-                ) : (
-                  <span className="inline-flex items-center text-xs text-muted-foreground px-4 py-2 rounded-full border border-border bg-muted/50">
-                    即將開放
-                  </span>
-                )}
+                <a
+                  href={tile.url || tile.qrSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-[#00B900] hover:bg-[#00B900]/85 text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors"
+                >
+                  掃我加好友
+                </a>
               </div>
             ))}
           </div>
