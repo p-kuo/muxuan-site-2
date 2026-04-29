@@ -641,9 +641,6 @@ export default function ServicesPage() {
                 <h2 className="font-serif text-2xl font-bold text-foreground leading-snug">
                   首次草本護髮體驗療程
                 </h2>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  草本調理頭皮・自然遮蓋白髮・天然無刺激
-                </p>
               </div>
 
               {/* Right — price + CTA */}
