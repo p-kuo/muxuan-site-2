@@ -626,30 +626,53 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center"
+            className="bg-primary/5 border border-primary/20 rounded-2xl p-7 md:p-8"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-              <Leaf className="text-primary" size={32} />
-            </div>
-            <Badge variant="outline" className="mb-3 border-primary/30 text-primary bg-primary/5 px-3 py-1">
-              新客限定
+            {/* Badge */}
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/8 px-3 py-1">
+              新客限定優惠
             </Badge>
-            <h2 className="font-serif text-2xl font-bold text-primary mb-1">
-              首次體驗・草本護髮
-            </h2>
-            <p className="text-5xl font-bold text-primary mb-3">
-              $700 <span className="text-2xl font-semibold">元</span>
-            </p>
-            <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
-              專為初次到訪的您設計，體驗沐璿草本護髮的溫柔呵護
-            </p>
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-white font-bold text-base h-12 px-10"
-              onClick={openLineModal}
-            >
-              立即預約體驗
-            </Button>
+
+            {/* Two-column layout: text left, price + CTA right */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+              {/* Left — offer details */}
+              <div className="space-y-2">
+                <h2 className="font-serif text-2xl font-bold text-foreground leading-snug">
+                  首次草本護髮體驗療程
+                </h2>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                  頭皮調理・白髮自然遮蓋，完整療程一次體驗，效果看得見。
+                </p>
+                <ul className="space-y-1 pt-1">
+                  {["草本頭皮深層調理", "白髮自然遮蓋染護", "天然成分・無刺激"].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/70">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right — price + CTA */}
+              <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-0.5">首次體驗價</p>
+                  <p className="text-5xl font-bold text-primary leading-none">
+                    $700
+                    <span className="text-xl font-semibold ml-1">元</span>
+                  </p>
+                </div>
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-white font-bold text-base h-12 px-8 w-full md:w-auto"
+                  onClick={openLineModal}
+                >
+                  立即預約體驗
+                </Button>
+              </div>
+
+            </div>
           </motion.div>
         </div>
       </section>
