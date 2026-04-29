@@ -189,9 +189,11 @@ function LineModalContent({ onClose }: { onClose: () => void }) {
 
         {/* Header */}
         <div className="pt-8 pb-5 px-6 text-center border-b border-border/50">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00B900]/10 mb-3">
-            <LineIcon className="w-8 h-8" />
-          </div>
+          <img
+            src="/assets/line logo.png"
+            alt="LINE"
+            className="w-12 h-12 object-contain mx-auto mb-3"
+          />
           <h2 className="font-serif text-xl font-bold text-foreground">
             加入沐璿 LINE 好友
           </h2>
