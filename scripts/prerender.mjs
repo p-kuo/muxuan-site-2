@@ -243,21 +243,48 @@ console.log(`\n🎉  Prerendered ${count} blog routes.`);
 // instead of relying on catch-all rewrites, which avoids any routing edge cases.
 
 const shellRoutes = [
-  "about",
-  "cases",
-  "services",
-  "contact",
-  "locations",
-  "faq",
-  "blog",
+  { route: "about",     title: "關於沐璿 | 沐璿草本護髮中心",     desc: "了解沐璿草本護髮中心的品牌故事、創辦理念，以及16年草本護髮專業經驗。" },
+  { route: "cases",     title: "成功案例 | 沐璿草本護髮中心",     desc: "查看沐璿草本護髮真實調理案例，包括白髮、落髮、頭皮屑與油脂失衡等問題的改善成果。" },
+  { route: "services",  title: "服務介紹 | 沐璿草本護髮中心",     desc: "沐璿草本護髮中心提供草本頭皮護理、草本染髮等服務，採用天然當歸、人蔘、何首烏配方，安全溫和。" },
+  { route: "contact",   title: "聯絡我們 | 沐璿草本護髮中心",     desc: "聯絡沐璿草本護髮中心，預約台北林森店或嘉義店草本頭皮護理服務。" },
+  { route: "locations", title: "門市資訊 | 沐璿草本護髮中心",     desc: "查看沐璿草本護髮中心台北林森店、嘉義店及新加坡門市地址、電話與營業時間。" },
+  { route: "faq",       title: "草本護髮常見問題 | 沐璿草本護髮中心", desc: "關於沐璿草本護髮的常見問題：療程是否有效、能否改善落髮、草本與化學染髮的差異，以及費用與護理頻率說明。" },
+  { route: "blog",      title: "護髮部落格 | 沐璿草本護髮中心",   desc: "沐璿草本護髮部落格：草本護髮知識、頭皮保養教學、染髮安全指南，由專業護理師撰寫。" },
 ];
 
 let shellCount = 0;
-for (const route of shellRoutes) {
+for (const { route, title, desc } of shellRoutes) {
+  const url = `https://muxuantw.com/${route}`;
+  let html = baseHtml;
+
+  // Patch <title>
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`);
+
+  // Patch <meta name="description">
+  html = html.replace(
+    /<meta name="description" content="[^"]*"/,
+    `<meta name="description" content="${desc}"`
+  );
+
+  // Patch <link rel="canonical"> — THIS is the critical fix
+  html = html.replace(
+    /<link rel="canonical" href="[^"]*"/,
+    `<link rel="canonical" href="${url}"`
+  );
+
+  // Patch OG tags
+  html = html.replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${title}"`);
+  html = html.replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${desc}"`);
+  html = html.replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}"`);
+
+  // Patch Twitter tags
+  html = html.replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${title}"`);
+  html = html.replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${desc}"`);
+
   const outDir = path.join(distDir, route);
   fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(path.join(outDir, "index.html"), baseHtml, "utf-8");
-  console.log(`✅  dist/${route}/index.html`);
+  fs.writeFileSync(path.join(outDir, "index.html"), html, "utf-8");
+  console.log(`✅  dist/${route}/index.html  (canonical: ${url})`);
   shellCount++;
 }
 

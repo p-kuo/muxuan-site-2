@@ -269,7 +269,7 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* ── Page Hero ──────────────────────────────────────────────── */}
-      <section className="pt-32 pb-16 relative overflow-hidden bg-background">
+      <section className="pt-40 pb-16 relative overflow-hidden bg-background">
         <div className="absolute inset-0">
           <PictureImage
             src={heroBgPng}
@@ -610,6 +610,42 @@ export default function ServicesPage() {
               })}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── First-timer promo card ───────────────────────────────────── */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center"
+          >
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+              <Leaf className="text-primary" size={32} />
+            </div>
+            <Badge variant="outline" className="mb-3 border-primary/30 text-primary bg-primary/5 px-3 py-1">
+              新客限定
+            </Badge>
+            <h2 className="font-serif text-2xl font-bold text-primary mb-1">
+              首次體驗・草本護髮
+            </h2>
+            <p className="text-5xl font-bold text-primary mb-3">
+              $700 <span className="text-2xl font-semibold">元</span>
+            </p>
+            <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
+              專為初次到訪的您設計，體驗沐璿草本護髮的溫柔呵護
+            </p>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white font-bold text-base h-12 px-10"
+              onClick={openLineModal}
+            >
+              立即預約體驗
+            </Button>
+          </motion.div>
         </div>
       </section>
 

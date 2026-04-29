@@ -29,6 +29,7 @@ const knowledgeDropdownItems = [
 ];
 
 import logo from "@assets/Untitled_design__15_-removebg-preview_1764006141705.png";
+import AnnouncementBar from "@/components/AnnouncementBar";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,13 +74,15 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      aria-label="沐璿草本護髮中心主要導覽"
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 border-b bg-white/70 backdrop-blur-md border-border/20",
-        isScrolled ? "py-2 shadow-sm border-border/40" : "py-4"
-      )}
-    >
+    <div className="fixed top-0 w-full z-50">
+      <AnnouncementBar />
+      <nav
+        aria-label="沐璿草本護髮中心主要導覽"
+        className={cn(
+          "transition-all duration-300 border-b bg-white/70 backdrop-blur-md border-border/20",
+          isScrolled ? "py-2 shadow-sm border-border/40" : "py-4"
+        )}
+      >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
 
         {/* Brand logo — links to homepage */}
@@ -362,6 +365,7 @@ export default function Navbar() {
         </div>
 
       </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

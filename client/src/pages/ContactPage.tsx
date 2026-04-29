@@ -98,7 +98,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Page Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden bg-background">
+      <section className="pt-40 pb-16 relative overflow-hidden bg-background">
         {/* Background image */}
         <div className="absolute inset-0">
           <PictureImage
