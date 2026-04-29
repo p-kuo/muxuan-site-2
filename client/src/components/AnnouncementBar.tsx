@@ -1,43 +1,18 @@
 /**
  * AnnouncementBar — sitewide first-timer promo strip.
  *
- * Dismissable (×); re-appears after 1 day via localStorage timestamp.
+ * Always visible on page load / refresh.
+ * Dismissable (×) for the current session only — reappears next visit.
  * Clicking "立即預約" opens the LINE store-picker modal.
  */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useLineModal } from "@/components/LineModal";
 
-const STORAGE_KEY = "muxuan_bar_dismissed_at";
-const HIDE_DURATION_MS = 24 * 60 * 60 * 1000; // 1 day
-
-function shouldShow(): boolean {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return true;
-    return Date.now() - Number(raw) > HIDE_DURATION_MS;
-  } catch {
-    return true;
-  }
-}
-
 export default function AnnouncementBar() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { openLineModal } = useLineModal();
-
-  useEffect(() => {
-    setVisible(shouldShow());
-  }, []);
-
-  function dismiss() {
-    setVisible(false);
-    try {
-      localStorage.setItem(STORAGE_KEY, String(Date.now()));
-    } catch {
-      // ignore
-    }
-  }
 
   return (
     <AnimatePresence initial={false}>
@@ -74,9 +49,9 @@ export default function AnnouncementBar() {
                 <span className="sm:hidden">預約 ›</span>
               </button>
 
-              {/* Dismiss */}
+              {/* Dismiss — session only, reappears on next page load */}
               <button
-                onClick={dismiss}
+                onClick={() => setVisible(false)}
                 className="absolute right-0 p-2 hover:opacity-70 transition-opacity"
                 aria-label="關閉優惠公告"
               >

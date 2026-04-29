@@ -336,71 +336,24 @@ export default function AboutPage() {
               {/* Narrative */}
               <div className="text-muted-foreground space-y-5 leading-loose text-[15px] font-sans">
                 <p>
-                  創辦人葉玉女在新加坡生活的20年間，與草本文化結下了一段緣分，這套草本配方的靈感，就是在那段時間得到啟發。
+                  創辦人葉玉女，在新加坡生活的20年間，與草本文化結下了一段緣分，這套草本配方的靈感，就是在那段時間得到啟發。
                 </p>
                 <p>
-                  這段旅程的起點，來自她與母親、女兒——三代人長期深受脂漏性皮膚炎的困擾。
-                </p>
-                <p>
-                  頭皮屑反覆出現、發癢不適，多年來試過各種方法，卻始終沒有真正好轉。隨著年齡增長，白髮問題也逐漸浮現，而傳統染髮劑帶來的刺激與負擔，讓頭皮狀況更加惡化。
+                  這段旅程的起點，來自她與母親、女兒，三代人長期深受脂漏性皮膚炎影響而起。頭皮屑反覆出現、發癢不適，她多年來試過各種方法，卻始終沒有真正好轉。同時，隨著年齡增長，白髮問題也逐漸浮現，傳統染髮劑帶來的刺激與負擔，讓頭皮狀況更加惡化。
                 </p>
 
                 {/* Pivot question */}
                 <blockquote className="border-l-4 border-primary/40 pl-5 py-1 my-6">
                   <p className="font-serif text-lg font-bold text-foreground/80 italic leading-snug">
-                    「遮蓋白髮，就一定要讓頭皮受傷嗎？」
+                    「難道『遮蓋白髮』，就一定要讓頭皮受傷嗎？」
                   </p>
                 </blockquote>
 
                 <p>
-                  三代人共同的頭皮困擾，加上對染髮安全的疑慮，讓她下定決心——一定要找到一種既能自然遮蓋白髮，又能溫和調理頭皮的方式。
+                  三代人共同的頭皮困擾，加上對染髮安全的擔憂，讓她下定決心，一定要找到一種既能自然遮蓋白髮，又能溫和調理頭皮的方式。於是，她投入一年多時間，專注於天然草本的研究與調配，反覆測試與改良，只為找到一個既溫和又穩定的配方。最終，她成功研發出一套天然、安全、有效的草本配方，讓染髮既可以保養頭皮，也可以染白髮。
                 </p>
                 <p>
-                  於是，她投入一年多時間，專注於天然草本的研究與調配，反覆測試與改良，只為找到一個既溫和又穩定的配方。
-                </p>
-              </div>
-
-              {/* Before / After callout */}
-              <div className="grid grid-cols-2 gap-3 my-2">
-                <div className="rounded-xl border border-red-200 bg-red-50/60 p-4">
-                  <p className="text-xs font-bold tracking-widest text-red-400 uppercase mb-3">調理前</p>
-                  <ul className="space-y-2">
-                    {[
-                      "頭皮屑反覆、搔癢不止",
-                      "傳統染劑刺激頭皮",
-                      "白髮逐漸增多",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-red-700/80">
-                        <span className="mt-0.5 shrink-0 text-red-400">✕</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
-                  <p className="text-xs font-bold tracking-widest text-primary/60 uppercase mb-3">調理後</p>
-                  <ul className="space-y-2">
-                    {[
-                      "頭皮屑明顯減少",
-                      "白髮自然遮蓋、無刺激",
-                      "頭皮健康逐漸回穩",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-primary/80">
-                        <span className="mt-0.5 shrink-0 text-primary">✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Resolution */}
-              <div className="text-muted-foreground space-y-5 leading-loose text-[15px] font-sans">
-                <p>
-                  最終，她成功研發出一套結合天然染白髮與頭皮調理的草本配方，讓染髮不再只是上色，而是一種頭皮保養。這套配方不僅能自然修飾白髮，同時也幫助改善頭皮屑、油脂失衡與搔癢問題，讓頭皮逐漸回到健康平衡的狀態。
-                </p>
-                <p>
-                  這個改變，真實發生在她與家人身上。從三代人的困擾，到親身驗證的改善成果，這份經歷不只是產品的誕生，更是一個被實踐過的答案。
+                  這套配方不僅能自然修飾白髮，同時也幫助改善頭皮屑、油脂失衡與搔癢問題，讓頭皮逐漸回到健康的狀態，同時也顯得更年輕。這個真實的案例，從三代人的困擾，到親身驗證的改善成果，所經歷的不只是產品的誕生，更是一個被實踐證明可行的答案。
                 </p>
                 <p>
                   隨著新加坡市場逐漸穩定，她決定將這份結合「染白髮」與「頭皮護理」的成果帶回台灣，讓更多人選擇染白髮時，可以透過溫和的自然方式，找回頭皮的舒適與平衡。

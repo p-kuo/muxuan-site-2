@@ -8,7 +8,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Download, ShieldCheck, FlaskConical } from "lucide-react";
+import { X, ShieldCheck, FlaskConical } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 // ── Certificate data ──────────────────────────────────────────────────────────
@@ -22,8 +22,10 @@ interface Cert {
   lab: string;
   date: string;
   thumb: string;
+  crop: string;       // cropped results-table image
   pages: string[];
   altThumb: string;
+  altCrop: string;
   altP1: string;
   altP2: string;
 }
@@ -36,11 +38,13 @@ const CERTS: Cert[] = [
     lab: "台美檢驗科技股份有限公司",
     date: "2025 年 9 月 22 日",
     thumb: "/assets/certs/cert-tiaoli-thumb.webp",
+    crop: "/assets/certs/cert-tiaoli-crop.webp",
     pages: [
       "/assets/certs/cert-tiaoli-p1.webp",
       "/assets/certs/cert-tiaoli-p2.webp",
     ],
     altThumb: "調理植物草本配方重金屬檢驗報告封面縮圖 — 台美檢驗科技，報告日期2025年9月22日",
+    altCrop: "調理植物重金屬檢驗結果 — 砷鉛鎘汞均未檢出，台美檢驗科技股份有限公司",
     altP1: "調理植物草本配方重金屬檢驗報告第一頁 — 砷鉛鎘汞均未檢出，台美檢驗科技股份有限公司",
     altP2: "調理植物草本配方重金屬檢驗報告第二頁 — 檢驗方法與備註，台美檢驗科技股份有限公司",
   },
@@ -51,11 +55,13 @@ const CERTS: Cert[] = [
     lab: "台美檢驗科技股份有限公司",
     date: "2025 年 9 月 22 日",
     thumb: "/assets/certs/cert-jinghua-thumb.webp",
+    crop: "/assets/certs/cert-jinghua-crop.webp",
     pages: [
       "/assets/certs/cert-jinghua-p1.webp",
       "/assets/certs/cert-jinghua-p2.webp",
     ],
     altThumb: "淨化植物草本配方重金屬檢驗報告封面縮圖 — 台美檢驗科技，報告日期2025年9月22日",
+    altCrop: "淨化植物重金屬檢驗結果 — 砷鉛鎘汞均未檢出，台美檢驗科技股份有限公司",
     altP1: "淨化植物草本配方重金屬檢驗報告第一頁 — 砷鉛鎘汞均未檢出，台美檢驗科技股份有限公司",
     altP2: "淨化植物草本配方重金屬檢驗報告第二頁 — 檢驗方法與備註，台美檢驗科技股份有限公司",
   },
@@ -142,20 +148,6 @@ function CertModal({ cert, onClose }: { cert: Cert; onClose: () => void }) {
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="px-6 py-3 border-t border-border/50 bg-muted/30 shrink-0 flex items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground leading-snug">
-            報告由{cert.lab}出具・報告編號：{cert.reportNo}・{cert.date}
-          </p>
-          <a
-            href={cert.pages[0]}
-            download={`${cert.reportNo}-${cert.productName}-p1.webp`}
-            className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
-          >
-            <Download className="w-3.5 h-3.5" />
-            下載
-          </a>
-        </div>
       </motion.div>
     </div>,
     document.body
@@ -281,6 +273,66 @@ export default function CertificateSection() {
       </section>
 
       {/* Modal */}
+      <AnimatePresence>
+        {activeCert && (
+          <CertModal cert={activeCert} onClose={() => setOpen(null)} />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// ── Inline mini cert previews (used inside formula section) ───────────────────
+
+export function InlineCerts() {
+  const [open, setOpen] = useState<CertId | null>(null);
+  const activeCert = CERTS.find((c) => c.id === open) ?? null;
+
+  return (
+    <>
+      <div className="pt-1">
+        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">
+          重金屬檢驗報告
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          {CERTS.map((cert) => (
+            <motion.button
+              key={cert.id}
+              onClick={() => setOpen(cert.id)}
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 340, damping: 22 }}
+              className="text-left rounded-xl overflow-hidden border border-border/40 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label={`查看${cert.productName}重金屬檢驗報告`}
+            >
+              {/* Cropped results-table image */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={cert.crop}
+                  alt={cert.altCrop}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto block grayscale-[15%] group-hover:grayscale-0 transition-all duration-300"
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/8 transition-colors duration-200 flex items-end justify-center pb-2">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-primary text-white text-[10px] font-semibold px-2.5 py-1 rounded-full shadow">
+                    查看完整報告
+                  </span>
+                </div>
+              </div>
+              {/* Label */}
+              <div className="px-2.5 py-2 flex items-center justify-between gap-1">
+                <div>
+                  <p className="text-xs font-bold text-foreground leading-tight">{cert.productName}</p>
+                  <p className="text-[10px] text-muted-foreground leading-snug">砷鉛鎘汞・未檢出</p>
+                </div>
+                <FlaskConical className="w-3.5 h-3.5 text-primary shrink-0" />
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
       <AnimatePresence>
         {activeCert && (
           <CertModal cert={activeCert} onClose={() => setOpen(null)} />

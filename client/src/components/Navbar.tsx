@@ -75,7 +75,6 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 w-full z-50">
-      <AnnouncementBar />
       <nav
         aria-label="沐璿草本護髮中心主要導覽"
         className={cn(
@@ -366,6 +365,7 @@ export default function Navbar() {
 
       </div>
       </nav>
+      <AnnouncementBar />
     </div>
   );
 }

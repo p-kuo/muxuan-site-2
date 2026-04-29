@@ -105,12 +105,20 @@ function QrImage({ src, alt }: { src: string; alt: string }) {
   const [failed, setFailed] = useState(false);
   if (failed) return <QrPlaceholder />;
   return (
-    <img
-      src={src}
-      alt={alt}
-      onError={() => setFailed(true)}
-      className="w-full h-full object-contain"
-    />
+    <div className="relative w-full h-full">
+      <img
+        src={src}
+        alt={alt}
+        onError={() => setFailed(true)}
+        className="w-full h-full object-contain"
+      />
+      {/* LINE logo centred over the QR code */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+          <LineIcon className="w-8 h-8" />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -209,7 +217,7 @@ function LineModalContent({ onClose }: { onClose: () => void }) {
             {LINE_TILES.map((tile) => (
               <div key={tile.id} className="flex flex-col items-center text-center">
                 {/* QR frame */}
-                <div className="w-36 h-36 border-2 border-primary/15 rounded-xl bg-muted/30 p-2 mb-3">
+                <div className="w-44 h-44 border border-border/30 rounded-2xl bg-white shadow-sm p-2.5 mb-3">
                   <QrImage src={tile.qrSrc} alt={`${tile.name} LINE QR碼`} />
                 </div>
 
