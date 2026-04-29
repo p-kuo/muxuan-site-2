@@ -323,21 +323,92 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                源自一個家族的親身體驗
-              </h2>
-              <div className="prose prose-lg text-muted-foreground space-y-6 leading-loose text-justify font-sans">
+              {/* Year badge + heading */}
+              <div>
+                <span className="inline-block text-xs font-semibold tracking-widest text-primary/60 uppercase mb-3 border border-primary/20 px-3 py-1 rounded-full bg-primary/5">
+                  沐璿創立於 2010 年
+                </span>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                  源自三代人的親身故事
+                </h2>
+              </div>
+
+              {/* Narrative */}
+              <div className="text-muted-foreground space-y-5 leading-loose text-[15px] font-sans">
                 <p>
-                  創辦人葉玉女在新加坡生活的20年裡，與四馬路觀音廟結下一段特別的緣分。這段經歷，也引導她走上以草本頭皮護理為方向的道路。在深入研究頭皮調理過程中，歷經一年多反覆測試與調整，終於研發出一套溫和且穩定的天然草本配方。此配方結合草本護理與天然染髮，在調理頭皮的同時也能自然上色，有助於改善頭皮油、頭皮屑與頭皮癢，並協助頭皮回到較健康的狀態，也為沐璿奠定了重要基礎。
+                  創辦人葉玉女在新加坡生活的20年間，與草本文化結下了一段緣分，這套草本配方的靈感，就是在那段時間得到啟發。
                 </p>
                 <p>
-                  其實，最早面臨頭皮問題的，就是她的家人。創辦人長期深受頭皮屑與反覆不適困擾，女兒也有相同狀況，母親則多年因頭皮問題反覆就醫。
+                  這段旅程的起點，來自她與母親、女兒——三代人長期深受脂漏性皮膚炎的困擾。
                 </p>
                 <p>
-                  三代人共同面臨頭皮困擾，使她更加堅定要找到真正安全、溫和的改善方式。經過長時間調整與使用，這套草本配方幫助家人逐步改善頭皮狀況，這份來自親身經歷的成果，也成為品牌誕生的重要起點。隨著新加坡經驗逐漸累積，她決定將這份草本護理帶回她的家鄉——台灣，希望讓更多人透過溫和自然的方式，找回頭皮的舒適與平衡。
+                  頭皮屑反覆出現、發癢不適，多年來試過各種方法，卻始終沒有真正好轉。隨著年齡增長，白髮問題也逐漸浮現，而傳統染髮劑帶來的刺激與負擔，讓頭皮狀況更加惡化。
+                </p>
+
+                {/* Pivot question */}
+                <blockquote className="border-l-4 border-primary/40 pl-5 py-1 my-6">
+                  <p className="font-serif text-lg font-bold text-foreground/80 italic leading-snug">
+                    「遮蓋白髮，就一定要讓頭皮受傷嗎？」
+                  </p>
+                </blockquote>
+
+                <p>
+                  三代人共同的頭皮困擾，加上對染髮安全的疑慮，讓她下定決心——一定要找到一種既能自然遮蓋白髮，又能溫和調理頭皮的方式。
                 </p>
                 <p>
-                  沐璿草本護髮始終堅持以真誠的心、天然的成分與安心的配方，帶給每一位需要的人。
+                  於是，她投入一年多時間，專注於天然草本的研究與調配，反覆測試與改良，只為找到一個既溫和又穩定的配方。
+                </p>
+              </div>
+
+              {/* Before / After callout */}
+              <div className="grid grid-cols-2 gap-3 my-2">
+                <div className="rounded-xl border border-red-200 bg-red-50/60 p-4">
+                  <p className="text-xs font-bold tracking-widest text-red-400 uppercase mb-3">調理前</p>
+                  <ul className="space-y-2">
+                    {[
+                      "頭皮屑反覆、搔癢不止",
+                      "油脂失衡、頭皮敏感",
+                      "傳統染劑刺激頭皮",
+                      "白髮逐漸增多",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-red-700/80">
+                        <span className="mt-0.5 shrink-0 text-red-400">✕</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+                  <p className="text-xs font-bold tracking-widest text-primary/60 uppercase mb-3">調理後</p>
+                  <ul className="space-y-2">
+                    {[
+                      "頭皮屑明顯減少",
+                      "油脂平衡、頭皮舒適",
+                      "白髮自然遮蓋、無刺激",
+                      "頭皮健康逐漸回穩",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-primary/80">
+                        <span className="mt-0.5 shrink-0 text-primary">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Resolution */}
+              <div className="text-muted-foreground space-y-5 leading-loose text-[15px] font-sans">
+                <p>
+                  最終，她成功研發出一套結合天然染白髮與頭皮調理的草本配方，讓染髮不再只是上色，而是一種頭皮保養。這套配方不僅能自然修飾白髮，同時也幫助改善頭皮屑、油脂失衡與搔癢問題，讓頭皮逐漸回到健康平衡的狀態。
+                </p>
+                <p>
+                  這個改變，真實發生在她與家人身上。從三代人的困擾，到親身驗證的改善成果，這份經歷不只是產品的誕生，更是一個被實踐過的答案。
+                </p>
+                <p>
+                  隨著新加坡市場逐漸穩定，她決定將這份結合「染白髮」與「頭皮護理」的成果帶回台灣，讓更多人選擇染白髮時，可以透過溫和的自然方式，找回頭皮的舒適與平衡。
+                </p>
+                <p className="font-medium text-foreground/70">
+                  沐璿草本始終堅持，以真誠的心、天然的成分、安心的配方，陪伴每一位需要的人。
                 </p>
               </div>
             </motion.div>
