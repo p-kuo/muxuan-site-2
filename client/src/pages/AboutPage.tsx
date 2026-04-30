@@ -326,7 +326,7 @@ export default function AboutPage() {
               {/* Year badge + heading */}
               <div>
                 <span className="inline-block text-xs font-semibold tracking-widest text-primary/60 uppercase mb-3 border border-primary/20 px-3 py-1 rounded-full bg-primary/5">
-                  沐璿創立於 2010 年
+                  沐璿創立於 2011 年
                 </span>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
                   源自三代人的親身故事
