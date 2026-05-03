@@ -206,16 +206,32 @@ export default function AboutPage() {
                 <span className="text-foreground font-medium" aria-current="page">關於沐璿</span>
               </nav>
 
-              <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1">
-                品牌故事
+              <Badge variant="outline" className="mb-4 border-primary/30 text-primary bg-primary/5 px-3 py-1 font-bold">
+                我們的信念
               </Badge>
 
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 leading-tight">
                 關於沐璿<br />草本護髮中心
               </h1>
 
-              <p className="text-muted-foreground text-base md:text-lg mb-6 leading-relaxed">
-                源自對「真正安全、天然、有效」護髮方式的追求，一個三代人共同走過的草本旅程
+              <p className="text-muted-foreground text-sm tracking-widest font-light mb-2">
+                沐璿始終相信
+              </p>
+
+              <p className="font-serif text-xl md:text-2xl font-bold text-foreground mb-4 leading-snug">
+                染髮，也可以是<br />一種溫和的保養。
+              </p>
+
+              <div className="flex items-center gap-3 mb-4">
+                <span className="block h-px w-8 bg-primary/30" />
+                <span className="text-primary/40 text-xs">✦</span>
+                <span className="block h-px w-8 bg-primary/30" />
+              </div>
+
+              <p className="text-muted-foreground text-sm md:text-base mb-6 leading-loose">
+                我們堅持以最真誠的心，選用天然草本成分，<br />
+                打造兼顧「遮蓋白髮」與「頭皮健康」的護理方式，<br />
+                讓每一次染髮，都是一次安心的調理過程。
               </p>
 
               {/* Founder's pull-quote */}
