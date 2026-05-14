@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Leaf, Droplets, ShieldCheck, ChevronsLeftRight } from "lucide-react";
+import { ChevronRight, Leaf, Droplets, ShieldCheck, ChevronsLeftRight, Sprout } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageFooter from "@/components/PageFooter";
 import { PictureImage } from "@/components/ui/picture-image";
@@ -230,6 +230,20 @@ const cases = [
     afterAlt:  "天然草本染髮後：白髮轉為光澤黑髮的效果",
     objectPosition: "center 30%",
   },
+  {
+    tag: "髮量稀疏",
+    icon: <Sprout className="w-5 h-5 text-primary" />,
+    title: "髮量日漸稀疏，草本調理喚醒沉睡毛囊",
+    profile: "女性，嘉義",
+    duration: "調理週期：12週",
+    summary:
+      "髮量慢慢減少、頭皮越來越明顯，是許多人不願面對卻又悄悄擔心的困擾。頭皮長期油脂失衡或慢性發炎，會讓毛囊逐漸萎縮、失去生長能力。經過草本深層頭皮調理，改善頭皮環境後，原本沉寂的毛囊重新獲得滋養，細小的新生髮絲陸續冒出，髮量也逐漸恢復。頭皮健康了，頭髮自然就會回來。",
+    beforeSrc: "/cases/thin-bef.jpg",
+    afterSrc:  "/cases/thin-aft.jpg",
+    beforeAlt: "髮量稀疏調理前：頭皮明顯外露，髮絲稀疏細軟",
+    afterAlt:  "髮量稀疏調理後：可見新生細髮密集冒出，頭皮逐漸被覆蓋",
+    objectPosition: "center 35%",
+  },
 ];
 
 const tags = [ALL_TAG, ...Array.from(new Set(cases.map((c) => c.tag)))];
@@ -288,6 +302,13 @@ const casesJsonLd = {
           "name": "重現青春光彩",
           "description": "不同於化學染劑生硬的烏黑，天然草本能呈現最自然的光澤黑，讓您看起來更年輕、更有活力。",
           "url": "https://muxuantw.com/cases#天然蓋白髮",
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "髮量日漸稀疏，草本調理喚醒沉睡毛囊",
+          "description": "髮量慢慢減少、頭皮越來越明顯，是許多人不願面對卻又悄悄擔心的困擾。經過草本深層頭皮調理，原本沉寂的毛囊重新獲得滋養，新生髮絲陸續冒出，髮量逐漸恢復。",
+          "url": "https://muxuantw.com/cases#髮量稀疏",
         },
       ],
     },
