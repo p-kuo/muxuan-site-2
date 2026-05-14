@@ -180,6 +180,7 @@ function BeforeAfterSlider({
 const ALL_TAG = "全部";
 
 const cases = [
+  // ── 頭皮發炎 ──────────────────────────────────────────────────────────────
   {
     tag: "頭皮發炎",
     icon: <ShieldCheck className="w-5 h-5 text-primary" />,
@@ -194,14 +195,12 @@ const cases = [
     afterWebpSrcSet:  "/cases/aft-480w.webp 480w, /cases/aft-768w.webp 768w, /cases/aft-960w.webp 960w",
     beforeAlt: "頭皮發炎調理前：頭頂分缝處可見明顯發炎傷口，毛囊受損",
     afterAlt:  "頭皮發炎痊癒後：發炎消退，可觀察到密集新生髮根",
-    // objectPosition focuses the crop on the scalp parting where the key
-    // difference is visible — both images have this area at roughly 40% from top
     objectPosition: "center 40%",
     priority: true,
     reversed: false,
   },
   {
-    tag: "頭皮過敏，發炎",
+    tag: "頭皮發炎",
     icon: <Droplets className="w-5 h-5 text-primary" />,
     title: "頭皮癢困擾多年，六週後頭皮明顯消紅",
     profile: "女性，47歲，嘉義",
@@ -217,7 +216,7 @@ const cases = [
     objectPosition: "center 35%",
   },
   {
-    tag: "頭皮過敏，發炎",
+    tag: "頭皮發炎",
     icon: <Droplets className="w-5 h-5 text-primary" />,
     title: "化學染過敏症狀與修復",
     profile: "女性，嘉義",
@@ -232,6 +231,7 @@ const cases = [
     afterAlt:  "化學染髮過敏調理後：草本護理12個月後頭皮發炎消退，肌膚屏障修復",
     objectPosition: "center 35%",
   },
+  // ── 天然蓋白髮 ────────────────────────────────────────────────────────────
   {
     tag: "天然蓋白髮",
     icon: <Leaf className="w-5 h-5 text-primary" />,
@@ -249,7 +249,7 @@ const cases = [
     objectPosition: "center 30%",
   },
   {
-    tag: "草本染白髮",
+    tag: "天然蓋白髮",
     icon: <Leaf className="w-5 h-5 text-primary" />,
     title: "滿頭白髮，草本染髮自然覆蓋",
     profile: "女性，嘉義",
@@ -330,14 +330,14 @@ const casesJsonLd = {
           "position": 2,
           "name": "頭皮癢困擾多年，六週後頭皮明顯消紅",
           "description": "使用化學染(PPD)遮蓋白髮，因過敏頭皮迅速出現大面積發紅和劇烈搔癢等症狀。經過幾週的護理，現在發炎區域幾乎全痊癒，頭皮不再搔癢。",
-          "url": "https://muxuantw.com/cases#頭皮過敏",
+          "url": "https://muxuantw.com/cases#頭皮發炎",
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "化學染過敏症狀與修復",
           "description": "長期化學染髮引發頭皮過敏，出現紅腫、灼熱、痂皮等不適。改用草本護理後，頭皮發炎明顯緩解，肌膚屏障逐步修復。",
-          "url": "https://muxuantw.com/cases#頭皮過敏",
+          "url": "https://muxuantw.com/cases#頭皮發炎",
         },
         {
           "@type": "ListItem",
@@ -351,7 +351,7 @@ const casesJsonLd = {
           "position": 5,
           "name": "滿頭白髮，草本染髮自然覆蓋",
           "description": "滿頭白髮，經過草本調理後自然覆蓋，髮色看起來更健康、更有光澤。",
-          "url": "https://muxuantw.com/cases#草本染白髮",
+          "url": "https://muxuantw.com/cases#天然蓋白髮",
         },
         {
           "@type": "ListItem",
