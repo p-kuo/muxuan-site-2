@@ -185,7 +185,7 @@ const cases = [
     tag: "頭皮發炎",
     icon: <ShieldCheck className="w-5 h-5 text-primary" />,
     title: "頭皮發炎 頭髮無法生長",
-    profile: "女性，51歲，新加坡",
+    profile: "女性，21歲學生，新加坡",
     duration: "調理週期：8週",
     summary:
       "當頭皮處於發炎狀態時，毛囊環境惡化，會直接導致頭髮無法生長。經過幾週的護理，現在發炎區域已完全痊癒，已經可以觀察到新生髮根。",
@@ -203,7 +203,7 @@ const cases = [
     tag: "頭皮發炎",
     icon: <Droplets className="w-5 h-5 text-primary" />,
     title: "頭皮癢困擾多年，六週後頭皮明顯消紅",
-    profile: "女性，47歲，嘉義",
+    profile: "男性，52歲，嘉義",
     duration: "調理週期：6週",
     summary:
       "使用化學染(PPD)遮蓋白髮，因過敏頭皮迅速出現大面積發紅和劇烈搔癢等症狀。經過幾週的護理，現在發炎區域幾乎全痊癒，頭皮不再搔癢。",
@@ -219,7 +219,7 @@ const cases = [
     tag: "頭皮發炎",
     icon: <Droplets className="w-5 h-5 text-primary" />,
     title: "化學染過敏症狀與修復",
-    profile: "女性，嘉義",
+    profile: "男性，嘉義",
     duration: "調理週期：12個月",
     summary:
       "長期化學染髮引發頭皮過敏，出現紅腫、灼熱、痂皮等不適。改用草本護理後，頭皮發炎明顯緩解，肌膚屏障逐步修復。",
@@ -227,7 +227,7 @@ const cases = [
     afterSrc:  "/cases/allergy-aft.jpeg",
     beforeWebpSrcSet: "/cases/allergy-bef-480w.webp 480w, /cases/allergy-bef-768w.webp 768w, /cases/allergy-bef-960w.webp 960w",
     afterWebpSrcSet:  "/cases/allergy-aft-480w.webp 480w, /cases/allergy-aft-768w.webp 768w, /cases/allergy-aft-960w.webp 960w",
-    beforeAlt: "化學染髮過敏調理前：頭皮出現紅腫、灼熱、痂皮等過敏反應",
+    beforeAlt: "男性個案調理前：頭皮可見紅腫與結痂狀況",
     afterAlt:  "化學染髮過敏調理後：草本護理12個月後頭皮發炎消退，肌膚屏障修復",
     objectPosition: "center 35%",
   },

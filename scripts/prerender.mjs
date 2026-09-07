@@ -106,6 +106,28 @@ const articles = [
     coverAlt:
       "女性照鏡子審視頭髮狀態，了解頭皮出油、皮脂腺過度分泌與草本調理改善方法 — 沐璿草本護髮中心",
   },
+  {
+    slug: "why-return-to-muxuan-plant-dye",
+    title: "做過植物染，為什麼又回到沐璿？",
+    metaDescription:
+      "一位曾做過植物染的客人重新回到沐璿的故事。了解沐璿 15 年天然植物染服務，及我們如何重視頭皮感受與每一次服務體驗。",
+    category: "品牌故事",
+    date: "2026-09-07",
+    readingTime: 4,
+    coverImage: "https://muxuantw.com/blog/natural-herbal-hair-color.webp",
+    coverAlt: "沐璿草本護髮中心天然植物染與頭皮護理服務體驗",
+  },
+  {
+    slug: "first-natural-plant-dye-long-term-choice",
+    title: "50歲開始出現白髮，第一次體驗天然植物染就決定長期選擇",
+    metaDescription:
+      "50 歲開始出現白髮，第一次體驗天然植物染後便決定長期選擇。了解沐璿如何為有白髮染髮需求的客人，提供天然植物染的另一種選擇。",
+    category: "品牌故事",
+    date: "2026-09-07",
+    readingTime: 4,
+    coverImage: "https://muxuantw.com/blog/natural-herbal-hair-color.webp",
+    coverAlt: "沐璿草本護髮中心天然植物染，為白髮整理提供自然紅棕色系選擇",
+  },
 ];
 
 function buildJsonLd(article) {
